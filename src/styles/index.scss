@@ -3,6 +3,7 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
+@import './module.scss';
 
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -14,6 +15,11 @@ body {
 
 html {
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 *,
@@ -50,9 +56,8 @@ a:hover {
   }
 }
 
-//main-container全局样式
-.app-main {
-  min-height: 100%;
+#app {
+  height: 100%;
 }
 
 .app-container {

@@ -1,7 +1,8 @@
 #app {
   // 主体区域
   .main-container {
-    min-height: 100%;
+    position: relative;
+    height: 100%;
     transition: margin-left 0.3s;
     margin-left: 180px;
   }
