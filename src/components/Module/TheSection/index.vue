@@ -1,6 +1,6 @@
 <template>
   <div class="module-field module-section" @click="handleModuleClick">
-    <draggable :options="dragOptions" @sort="handleSort" @add="handleAdd">
+    <draggable class="drag-content" :options="dragOptions" @sort="handleSort" @add="handleAdd">
       <slot></slot>
     </draggable>
   </div>
@@ -8,12 +8,11 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { mapMutations, mapActions } from 'vuex'
-import { handleModuleClickMixin } from '../moduleMixin'
+import { handleModuleClickMixin, handleDragMixin } from '../moduleMixin'
 
 export default {
   name: 'ModuleSection',
-  mixins: [handleModuleClickMixin],
+  mixins: [handleModuleClickMixin, handleDragMixin],
   props: {
     node: {
       type: Object
@@ -26,28 +25,12 @@ export default {
     return {
       dragOptions: {
         group: {
-          name: 'widgets',
+          name: 'leafs',
           pull: false,
           put: true
         },
         sort: true
       }
-    }
-  },
-  methods: {
-    ...mapMutations('configure', ['sortModule']),
-    ...mapActions('configure', ['addModule']),
-    handleSort (e) {
-      let { oldIndex, newIndex, from, to } = e
-      if (from === to) {
-        this.sortModule({ array: this.node.children, oldIndex, newIndex })
-      }
-    },
-    handleAdd (e) {
-      let { item, newIndex } = e
-      const widgetType = item.getAttribute('type')
-      item.parentElement.removeChild(item)
-      this.addModule({ section: this.node.children, widgetType, newIndex })
     }
   },
   components: {
@@ -57,10 +40,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'src/styles/variables';
+
 .module-section {
-  border: 1px solid transparent;
-  &:hover {
-    border-color: tomato;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  border: 1px solid lighten($module-border-color, 10%);
+  .drag-content {
+    flex: 1;
   }
 }
 </style>

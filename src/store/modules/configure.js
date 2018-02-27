@@ -2,18 +2,16 @@ import { getSite } from '@/api/configure'
 import createUniqueString from '@/utils/createUniqueString'
 import { deepCopy } from '@/utils/index'
 
-function getLeaf (obj) {
-  let leaf = []
-  void (function f (obj) {
-    if (obj.children) {
-      for (let child of obj.children) {
-        f(child)
+function removeOneModule (site, one) {
+  if (site.children && site.children.length) {
+    site.children.forEach((item, index, arr) => {
+      if (item.id === one.id) {
+        arr.splice(index, 1)
+      } else {
+        removeOneModule(item, one)
       }
-    } else {
-      leaf.push(obj)
-    }
-  })(obj)
-  return leaf
+    })
+  }
 }
 
 const configure = {
@@ -72,6 +70,17 @@ const configure = {
     inEditModule: {},
     widgets: [
       {
+        type: 'section',
+        name: 'section001',
+        icon: 'el-icon-info',
+        placeholder: {
+          type: 'ModuleSection',
+          config: {},
+          children: []
+        }
+      },
+      {
+        type: 'leaf',
         name: 'paragraph',
         icon: 'el-icon-edit',
         placeholder: {
@@ -99,13 +108,28 @@ const configure = {
     ]
   },
   getters: {
-    leafModules ({site}) {
-      return getLeaf(site)
+    sectionWidgets ({ widgets }) {
+      return widgets.filter(widget => widget.type === 'section')
+    },
+    leafWidgets ({ widgets }) {
+      return widgets.filter(widget => widget.type === 'leaf')
     }
   },
   mutations: {
     assignState (state, obj) {
       Object.assign(state, obj)
+    },
+    addModule (state, { section, widgetType, newIndex }) {
+      const widget = state.widgets.find(
+        widget => widget.placeholder.type === widgetType
+      )
+      if (widget) {
+        const placeholder = deepCopy(widget.placeholder)
+        section.splice(newIndex, 0, {
+          ...placeholder,
+          id: createUniqueString()
+        })
+      }
     },
     sortModule (state, { array, oldIndex, newIndex }) {
       let target = array[oldIndex]
@@ -114,17 +138,14 @@ const configure = {
     }
   },
   actions: {
-    addModule ({ state, commit }, { section, widgetType, newIndex }) {
-      const widget = state.widgets.find(widget => widget.placeholder.type === widgetType)
-      if (widget) {
-        const placeholder = deepCopy(widget.placeholder)
-        section.splice(newIndex, 0, { ...placeholder, id: createUniqueString() })
-      }
+    removeModule ({ state, commit, dispatch }) {
+      removeOneModule(state.site, state.inEditModule)
+      dispatch('setEditModule', {})
     },
-    getCurrentPage ({state, commit}) {
+    getCurrentPage ({ state, commit }) {
       commit('assignState', { currentPage: state.site.children[0] })
     },
-    setEditModule ({state, commit}, module) {
+    setEditModule ({ state, commit }, module) {
       commit('assignState', { inEditModule: module })
     },
     async getSite ({ commit }, id) {

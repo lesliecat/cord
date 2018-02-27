@@ -1,4 +1,4 @@
-import { mapActions } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 export const handleModuleClickMixin = {
   methods: {
@@ -22,6 +22,24 @@ export const handleModuleClickMixin = {
         componentHtml.setAttribute('data-component-active', 'true')
       }
       this.setEditModule(this.node)
+    }
+  }
+}
+
+export const handleDragMixin = {
+  methods: {
+    ...mapMutations('configure', ['addModule', 'sortModule']),
+    handleSort (e) {
+      let { oldIndex, newIndex, from, to } = e
+      if (from === to) {
+        this.sortModule({ array: this.node.children, oldIndex, newIndex })
+      }
+    },
+    handleAdd (e) {
+      let { item, newIndex } = e
+      const widgetType = item.getAttribute('type')
+      item.parentElement.removeChild(item)
+      this.addModule({ section: this.node.children, widgetType, newIndex })
     }
   }
 }

@@ -2,14 +2,26 @@
   <div class="configure">
     <div class="configure__module">
       <h3 class="configure__title">Module</h3>
-      <draggable :options="dragOptions">
+      <p>sectionWidgets</p>
+        <draggable :options="sectionsDragOptions">
+          <div
+            v-for="section in sectionWidgets"
+            :key="section.name"
+            class="widget-card"
+            :type="section.placeholder.type">
+            <i :class="section.icon"></i>
+            <p>{{section.name}}</p>
+          </div>
+        </draggable>
+      <p>leafWidgets</p>
+      <draggable :options="leafsDragOptions">
         <div
-          v-for="widget in widgets"
-          :key="widget.name"
+          v-for="leaf in leafWidgets"
+          :key="leaf.name"
           class="widget-card"
-          :type="widget.placeholder.type">
-          <i :class="widget.icon"></i>
-          <p>{{widget.name}}</p>
+          :type="leaf.placeholder.type">
+          <i :class="leaf.icon"></i>
+          <p>{{leaf.name}}</p>
         </div>
       </draggable>
     </div>
@@ -28,15 +40,23 @@
 import Draggable from 'vuedraggable'
 import TheRender from '@/components/TheRender'
 import ModuleEdit from '@/components/ModuleEdit'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Configure',
   data () {
     return {
-      dragOptions: {
+      sectionsDragOptions: {
         group: {
-          name: 'widgets',
+          name: 'sections',
+          pull: 'clone',
+          put: false
+        },
+        sort: false
+      },
+      leafsDragOptions: {
+        group: {
+          name: 'leafs',
           pull: 'clone',
           put: false
         },
@@ -45,7 +65,8 @@ export default {
     }
   },
   computed: {
-    ...mapState('configure', ['site', 'currentPage', 'widgets', 'inEditModule'])
+    ...mapState('configure', ['site', 'currentPage', 'inEditModule']),
+    ...mapGetters('configure', ['sectionWidgets', 'leafWidgets'])
   },
   methods: {
     ...mapActions('configure', ['getCurrentPage'])

@@ -1,7 +1,7 @@
 <template>
-  <div class="module-edit">
+  <div class="module-edit" v-show="isShow">
     <div class="edit-title">
-      <el-button type="warning">删除此模块</el-button>
+      <el-button type="warning" @click="removeModule">删除此模块</el-button>
     </div>
     <p>type: {{inEditModule.type}}</p>
     <div
@@ -17,15 +17,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 const SingleRowArr = ['boolean']
 
 export default {
   name: 'ModuleEdit',
   computed: {
-    ...mapState('configure', ['inEditModule'])
+    ...mapState('configure', ['inEditModule']),
+    isShow () {
+      return Object.keys(this.inEditModule).length
+    }
   },
   methods: {
+    ...mapActions('configure', ['removeModule']),
     isSingleRow (type) {
       return SingleRowArr.includes(type)
     }
@@ -35,6 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 @import 'src/styles/variables';
+
 .edit-title {
   text-align: center;
   margin-bottom: 20px;
