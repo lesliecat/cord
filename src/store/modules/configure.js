@@ -71,8 +71,8 @@ const configure = {
     widgets: [
       {
         type: 'section',
-        name: 'section001',
-        icon: 'el-icon-info',
+        name: 'Section',
+        icon: '',
         placeholder: {
           type: 'ModuleSection',
           config: {},
@@ -81,8 +81,8 @@ const configure = {
       },
       {
         type: 'leaf',
-        name: 'paragraph',
-        icon: 'el-icon-edit',
+        name: 'Paragraph',
+        icon: '',
         placeholder: {
           type: 'ModuleParagraph',
           config: {

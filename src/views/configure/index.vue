@@ -1,19 +1,19 @@
 <template>
   <div class="configure">
     <div class="configure__module">
-      <h3 class="configure__title">Module</h3>
-      <p>sectionWidgets</p>
-        <draggable :options="sectionsDragOptions">
-          <div
-            v-for="section in sectionWidgets"
-            :key="section.name"
-            class="widget-card"
-            :type="section.placeholder.type">
-            <i :class="section.icon"></i>
-            <p>{{section.name}}</p>
-          </div>
-        </draggable>
-      <p>leafWidgets</p>
+      <h3 class="configure__title">模块</h3>
+      <p class="module__title">布局</p>
+      <draggable :options="sectionsDragOptions">
+        <div
+          v-for="section in sectionWidgets"
+          :key="section.name"
+          class="widget-card"
+          :type="section.placeholder.type">
+          <i :class="section.icon"></i>
+          <p>{{section.name}}</p>
+        </div>
+      </draggable>
+      <p class="module__title">组件</p>
       <draggable :options="leafsDragOptions">
         <div
           v-for="leaf in leafWidgets"
@@ -26,11 +26,11 @@
       </draggable>
     </div>
     <div class="configure__preview">
-      <h3 class="configure__title">Preview</h3>
+      <h3 class="configure__title">预览</h3>
       <the-render :node="currentPage" :themeColor="site.config.color.value"></the-render>
     </div>
     <div class="configure__edit">
-      <h3 class="configure__title">Edit</h3>
+      <h3 class="configure__title">编辑</h3>
       <module-edit></module-edit>
     </div>
   </div>
@@ -102,9 +102,17 @@ export default {
       align-items: center;
       width: 100px;
       border: 1px solid;
-      border-radius: 2px;
+      border-radius: 6px;
       padding: 5px;
+      color: #fff;
+      background: $color-primary;
+      font-size: $font-size-base;
       cursor: move;
+    }
+
+    .module__title {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $border-color-base;
     }
   }
 

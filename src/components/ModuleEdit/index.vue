@@ -1,7 +1,7 @@
 <template>
   <div class="module-edit" v-show="isShow">
     <div class="edit-title">
-      <el-button type="warning" @click="removeModule">删除此模块</el-button>
+      <el-button type="warning" @click="removeModule" @keyup.delete="removeModule">删除此模块</el-button>
     </div>
     <p>type: {{inEditModule.type}}</p>
     <div

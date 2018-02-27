@@ -45,6 +45,8 @@ export default {
 .module-page {
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
   min-height: 400px;
   border: 1px solid $module-border-color;
   .drag-content {
