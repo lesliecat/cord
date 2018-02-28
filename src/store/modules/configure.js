@@ -14,6 +14,17 @@ function removeOneModule (site, one) {
   }
 }
 
+function changeModuleType (module, oldMode, newMode) {
+  if (module.type) {
+    module.type = module.type.replace(oldMode, newMode)
+  }
+  if (module.children && module.children.length) {
+    for (let m of module.children) {
+      changeModuleType(m, oldMode, newMode)
+    }
+  }
+}
+
 const configure = {
   namespaced: true,
   state: {
@@ -30,31 +41,35 @@ const configure = {
       children: [
         {
           id: createUniqueString(),
-          type: 'ModulePage',
+          type: 'EditPage',
           name: 'the page',
           children: [
             {
               id: createUniqueString(),
-              type: 'ModuleSection',
+              type: 'EditSection',
               config: {},
               children: [
                 {
                   id: createUniqueString(),
-                  type: 'ModuleParagraph',
+                  type: 'EditParagraph',
                   config: {
                     title: {
+                      label: '正标题',
                       type: 'text',
                       value: '正标题'
                     },
                     subTitle: {
+                      label: '副标题',
                       type: 'text',
                       value: '副标题'
                     },
                     detail: {
+                      label: '内容',
                       type: 'text',
                       value: '正心诚意，格物致知'
                     },
                     showSubTitle: {
+                      label: '显示副标题',
                       type: 'boolean',
                       value: true
                     }
@@ -74,7 +89,7 @@ const configure = {
         name: 'Section',
         icon: '',
         placeholder: {
-          type: 'ModuleSection',
+          type: 'EditSection',
           config: {},
           children: []
         }
@@ -84,21 +99,25 @@ const configure = {
         name: 'Paragraph',
         icon: '',
         placeholder: {
-          type: 'ModuleParagraph',
+          type: 'EditParagraph',
           config: {
             title: {
+              label: '正标题',
               type: 'text',
               value: '正标题'
             },
             subTitle: {
+              label: '副标题',
               type: 'text',
               value: '副标题'
             },
             detail: {
+              label: '内容',
               type: 'text',
               value: '内容部分'
             },
             showSubTitle: {
+              label: '显示副标题',
               type: 'boolean',
               value: false
             }
@@ -113,6 +132,11 @@ const configure = {
     },
     leafWidgets ({ widgets }) {
       return widgets.filter(widget => widget.type === 'leaf')
+    },
+    previewPage ({ currentPage }) {
+      let ret = deepCopy(currentPage)
+      changeModuleType(ret, 'Edit', 'Show')
+      return ret
     }
   },
   mutations: {

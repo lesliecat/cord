@@ -1,5 +1,5 @@
 <template>
-  <div class="module-field module-page">
+  <div class="module-field module-section" @click="handleModuleClick">
     <draggable class="drag-content" :options="dragOptions" @sort="handleSort" @add="handleAdd">
       <slot></slot>
     </draggable>
@@ -8,11 +8,11 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { handleDragMixin } from '../moduleMixin'
+import { handleModuleClickMixin, handleDragMixin } from '../moduleMixin'
 
 export default {
-  name: 'ModulePage',
-  mixins: [handleDragMixin],
+  name: 'EditSection',
+  mixins: [handleModuleClickMixin, handleDragMixin],
   props: {
     node: {
       type: Object
@@ -25,7 +25,7 @@ export default {
     return {
       dragOptions: {
         group: {
-          name: 'sections',
+          name: 'leafs',
           pull: false,
           put: true
         },
@@ -42,13 +42,13 @@ export default {
 <style lang="scss" scoped>
 @import 'src/styles/variables';
 
-.module-page {
+.module-section {
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 400px;
-  border: 1px solid $module-border-color;
+  min-height: 200px;
+  outline: 1px dashed $module-border-color;
+  cursor: move;
   .drag-content {
     flex: 1;
   }

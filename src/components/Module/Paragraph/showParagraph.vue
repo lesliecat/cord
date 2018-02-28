@@ -1,7 +1,6 @@
 <template>
   <div
-    class="module-field module-paragraph"
-    @click.stop="handleModuleClick">
+    class="module-field module-paragraph">
     <h2>{{node.config.title.value}}</h2>
     <h3 v-if="node.config.showSubTitle.value">{{node.config.subTitle.value}}</h3>
     <p>{{node.config.detail.value}}</p>
@@ -9,11 +8,8 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../moduleMixin'
-
 export default {
-  name: 'ModuleParagraph',
-  mixins: [handleModuleClickMixin],
+  name: 'ShowParagraph',
   props: {
     node: {
       type: Object
@@ -24,12 +20,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.module-paragraph {
-  cursor: move;
-  &:hover {
-    background: #ddd;
-  }
-}
-</style>
