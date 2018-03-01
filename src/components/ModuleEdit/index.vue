@@ -6,23 +6,13 @@
     <div class="edit-title">
       <el-tag type="info">{{inEditModule.type}}</el-tag>
     </div>
-    <div
-      class="edit-content"
-      :class="{'single-row': isSingleRow(val.type)}"
-      v-for="(val, key) in inEditModule.config"
-      :key="key">
-      <p class="item-title">{{val.label}}:</p>
-      <div class="item-content">
-        <el-switch v-if="val.type === 'boolean'" v-model="val.value"></el-switch>
-        <el-input v-if="val.type === 'text'" v-model="val.value" clearable></el-input>
-      </div>
-    </div>
+    <module-config :config="inEditModule.config"></module-config>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-const SingleRowArr = ['boolean']
+import ModuleConfig from './ModuleConfig'
 
 export default {
   name: 'ModuleEdit',
@@ -33,36 +23,19 @@ export default {
     }
   },
   methods: {
-    ...mapActions('configure', ['removeModule']),
-    isSingleRow (type) {
-      return SingleRowArr.includes(type)
-    }
+    ...mapActions('configure', ['removeModule'])
+  },
+  components: {
+    ModuleConfig
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import 'src/styles/variables';
-
-.edit-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.edit-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.item-title {
-  color: #666;
-  width: 100px;
-  flex: 0 0 100px;
-  text-align: right;
-  font-size: $font-size-base;
-}
-.item-content {
-  flex: 1;
-  padding-left: 20px;
+.module-edit {
+  .edit-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }
 </style>

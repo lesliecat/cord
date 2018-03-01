@@ -95,6 +95,55 @@ const configure = {
         }
       },
       {
+        type: 'section',
+        name: 'Carousel',
+        icon: '',
+        placeholder: {
+          type: 'EditCarousel',
+          config: {
+            height: {
+              label: '高度',
+              type: 'number',
+              value: 300
+            },
+            autoplay: {
+              label: '自动播放',
+              type: 'boolean',
+              value: false
+            },
+            arrow: {
+              label: '箭头',
+              type: 'select',
+              value: 'always',
+              items: ['always', 'hover', 'never']
+            },
+            list: {
+              label: '图片列表',
+              type: 'list',
+              placeholder: {
+                src: {
+                  label: '图片地址',
+                  type: 'image',
+                  value: 'https://www.baidu.com/img/bd_logo1.png'
+                },
+                href: {
+                  label: '图片链接',
+                  type: 'text',
+                  value: ''
+                }
+              },
+              itemNum: {
+                label: '子项个数',
+                type: 'number',
+                value: 3
+              },
+              children: [],
+              value: []
+            }
+          }
+        }
+      },
+      {
         type: 'leaf',
         name: 'Paragraph',
         icon: '',

@@ -1,10 +1,11 @@
 <template>
-  <component :is="node.type" :node="node" :theme="themeColor">
+  <component class="module-field" :is="node.type" :node="node" :themeColor="themeColor">
     <the-render
+      class="module-field"
       v-for="child in node.children"
       :key="child.id"
       :node="child"
-      :theme="themeColor">
+      :themeColor="themeColor">
     </the-render>
   </component>
 </template>
@@ -17,6 +18,8 @@ import EditSection from '@/components/Module/Section/EditSection'
 import ShowSection from '@/components/Module/Section/ShowSection'
 import EditParagraph from '@/components/Module/Paragraph/EditParagraph'
 import ShowParagraph from '@/components/Module/Paragraph/ShowParagraph'
+import EditCarousel from '@/components/Module/Carousel/EditCarousel'
+import ShowCarousel from '@/components/Module/Carousel/ShowCarousel'
 
 export default {
   name: 'TheRender',
@@ -34,7 +37,9 @@ export default {
     EditSection,
     ShowSection,
     EditParagraph,
-    ShowParagraph
+    ShowParagraph,
+    EditCarousel,
+    ShowCarousel
   }
 }
 </script>

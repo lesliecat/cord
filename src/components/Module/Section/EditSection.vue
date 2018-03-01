@@ -1,5 +1,5 @@
 <template>
-  <div class="module-field module-section" @click="handleModuleClick">
+  <div class="module-section" @click="handleModuleClick">
     <draggable class="drag-content" :options="dragOptions" @sort="handleSort" @add="handleAdd">
       <slot></slot>
     </draggable>

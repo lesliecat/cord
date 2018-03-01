@@ -1,5 +1,5 @@
 <template>
-  <div class="module-field module-section">
+  <div class="module-section">
     <slot></slot>
   </div>
 </template>
