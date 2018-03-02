@@ -6,6 +6,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -18,6 +21,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 Vue.use(ElementUI, { locale })
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 

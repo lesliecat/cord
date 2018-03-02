@@ -25,6 +25,16 @@ function changeModuleType (module, oldMode, newMode) {
   }
 }
 
+// function normalizeChildrenConfig (config) {
+//   let childrenConfig = {}
+//   config.children.forEach((item, index) => {
+//     for (let [key, val] of Object.entries(item)) {
+//       childrenConfig[key + index] = val
+//     }
+//   })
+//   config.childrenConfig = childrenConfig
+// }
+
 const configure = {
   namespaced: true,
   state: {
@@ -43,41 +53,7 @@ const configure = {
           id: createUniqueString(),
           type: 'EditPage',
           name: 'the page',
-          children: [
-            {
-              id: createUniqueString(),
-              type: 'EditSection',
-              config: {},
-              children: [
-                {
-                  id: createUniqueString(),
-                  type: 'EditParagraph',
-                  config: {
-                    title: {
-                      label: '正标题',
-                      type: 'text',
-                      value: '正标题'
-                    },
-                    subTitle: {
-                      label: '副标题',
-                      type: 'text',
-                      value: '副标题'
-                    },
-                    detail: {
-                      label: '内容',
-                      type: 'text',
-                      value: '正心诚意，格物致知'
-                    },
-                    showSubTitle: {
-                      label: '显示副标题',
-                      type: 'boolean',
-                      value: true
-                    }
-                  }
-                }
-              ]
-            }
-          ]
+          children: []
         }
       ]
     },
@@ -96,49 +72,38 @@ const configure = {
       },
       {
         type: 'section',
-        name: 'Carousel',
+        name: 'Swipe',
         icon: '',
         placeholder: {
-          type: 'EditCarousel',
+          type: 'EditSwipe',
           config: {
+            auto: {
+              label: '自动播放',
+              type: 'number',
+              value: 3000
+            },
             height: {
               label: '高度',
               type: 'number',
-              value: 300
+              value: 200
             },
-            autoplay: {
-              label: '自动播放',
-              type: 'boolean',
-              value: false
-            },
-            arrow: {
-              label: '箭头',
-              type: 'select',
-              value: 'always',
-              items: ['always', 'hover', 'never']
-            },
-            list: {
-              label: '图片列表',
-              type: 'list',
-              placeholder: {
-                src: {
-                  label: '图片地址',
-                  type: 'image',
-                  value: 'https://www.baidu.com/img/bd_logo1.png'
-                },
-                href: {
-                  label: '图片链接',
-                  type: 'text',
-                  value: ''
+            children: {
+              label: '子项',
+              type: 'children',
+              value: [
+                {
+                  src: {
+                    label: '图片',
+                    type: 'image',
+                    value: ''
+                  },
+                  href: {
+                    label: '链接',
+                    type: 'text',
+                    value: 'https://www.baidu.com'
+                  }
                 }
-              },
-              itemNum: {
-                label: '子项个数',
-                type: 'number',
-                value: 3
-              },
-              children: [],
-              value: []
+              ]
             }
           }
         }
@@ -219,6 +184,16 @@ const configure = {
       commit('assignState', { currentPage: state.site.children[0] })
     },
     setEditModule ({ state, commit }, module) {
+      // if (module.config.chidlren) {
+      //   let childrenConfig = {}
+      //   module.config.children.forEach((item, index) => {
+      //     for (let [key, val] of Object.entries(item)) {
+      //       childrenConfig[key + index] = val
+      //     }
+      //   })
+      //   console.log(childrenConfig)
+      //   Object.assign(module.config, {childrenConfig})
+      // }
       commit('assignState', { inEditModule: module })
     },
     async getSite ({ commit }, id) {

@@ -18,8 +18,8 @@ import EditSection from '@/components/Module/Section/EditSection'
 import ShowSection from '@/components/Module/Section/ShowSection'
 import EditParagraph from '@/components/Module/Paragraph/EditParagraph'
 import ShowParagraph from '@/components/Module/Paragraph/ShowParagraph'
-import EditCarousel from '@/components/Module/Carousel/EditCarousel'
-import ShowCarousel from '@/components/Module/Carousel/ShowCarousel'
+import EditSwipe from '@/components/Module/Swipe/EditSwipe'
+import ShowSwipe from '@/components/Module/Swipe/ShowSwipe'
 
 export default {
   name: 'TheRender',
@@ -38,8 +38,8 @@ export default {
     ShowSection,
     EditParagraph,
     ShowParagraph,
-    EditCarousel,
-    ShowCarousel
+    EditSwipe,
+    ShowSwipe
   }
 }
 </script>
