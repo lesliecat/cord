@@ -1,25 +1,36 @@
 <template>
   <div class="module-imglink">
     <div
-      class="imglink-item"
-      :style="{width: (100 / node.config.columnNum.value) + '%'}"
-      v-for="(item, index) in node.config.children.value"
-      :key="index">
-      <a class="item-link" :href="item.href.value" target="_blank">
-        <div
-          class="item-picbox"
-          :class="{'circle-box': node.config.picShape.value === 'circle'}">
-          <img class="item-pic" :src="item.src.value" alt="">
-        </div>
-        <div
-          class="item-titlebox"
-          v-if="node.config.showTitle.value || node.config.showSubTitle.value">
-          <p class="item-title" v-if="node.config.showTitle.value">{{item.title.value}}</p>
-          <p class="item-sub-title" v-if="node.config.showSubTitle.value">
-            {{item.subTitle.value}}
-          </p>
-        </div>
-      </a>
+      class="imglink-row"
+      :style="{
+        'margin-left': -node.config.gutter.value + 'px',
+        'margin-right': -node.config.gutter.value + 'px'
+      }">
+      <div
+        class="imglink-item"
+        :style="{
+          width: (100 / node.config.columnNum.value) + '%',
+          'padding-left': node.config.gutter.value + 'px',
+          'padding-right': node.config.gutter.value + 'px'
+        }"
+        v-for="(item, index) in node.config.children.value"
+        :key="index">
+        <a class="item-link" :href="item.href.value" target="_blank">
+          <div
+            class="item-picbox"
+            :class="{'circle-box': node.config.picShape.value === 'circle'}">
+            <img class="item-pic" :src="item.src.value" alt="">
+          </div>
+          <div
+            class="item-titlebox"
+            v-if="node.config.showTitle.value || node.config.showSubTitle.value">
+            <p class="item-title" v-if="node.config.showTitle.value">{{item.title.value}}</p>
+            <p class="item-sub-title" v-if="node.config.showSubTitle.value">
+              {{item.subTitle.value}}
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -42,12 +53,12 @@ export default {
 @import 'src/styles/variables';
 
 .module-imglink {
-  display: flex;
-  flex-wrap: wrap;
+  .imglink-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .imglink-item {
-    width: 20%;
     text-align: center;
-    padding: 0 5px;
     .item-link {
       display: block;
     }

@@ -129,6 +129,15 @@ const configure = {
             columnNum: {
               label: '列数',
               type: 'number',
+              min: 1,
+              max: 5,
+              value: 5
+            },
+            gutter: {
+              label: '列间距',
+              type: 'number',
+              min: 0,
+              max: 10,
               value: 5
             },
             picShape: {

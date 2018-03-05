@@ -16,7 +16,7 @@
         <el-input-number
           v-if="val.type === 'number'"
           v-model="val.value"
-          :min="val.min || 1"
+          :min="val.min"
           :max="val.max"
           :step="val.step"
           size="small">
