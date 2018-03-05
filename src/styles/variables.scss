@@ -1,4 +1,20 @@
+// Base
+$font-size-base: 14px;
+$font-size-large: 18px;
+$font-size-small: 12px;
+
+$color-primary: #409eff;
+
+// Background
+$background-color-base: #f5f7fa;
+
+// Border color
+$border-color-base: #e6e6e6;
+
 // sidebar
 $menu-bg: #304156;
 $subMenu-bg: #1f2d3d;
 $menu-hover-bg: #001528;
+
+// Module
+$module-border-color: $menu-bg;

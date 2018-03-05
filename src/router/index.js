@@ -78,6 +78,19 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/configure',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Configure',
+        component: () => import('@/views/configure/index'),
+        meta: { title: '配置页', icon: 'example' }
+      }
+    ]
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 
