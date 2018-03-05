@@ -1,10 +1,7 @@
 <template>
   <div class="module-edit" v-show="isShow">
     <div class="edit-title">
-      <el-button type="warning" @click="removeModule">删除此模块</el-button>
-    </div>
-    <div class="edit-title">
-      <el-tag type="info">{{inEditModule.type}}</el-tag>
+      <el-tag type="warning" closable @close="removeModule">{{inEditModule.type}}</el-tag>
     </div>
     <module-config :config="inEditModule.config"></module-config>
   </div>
@@ -32,9 +29,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'src/styles/variables';
+
 .module-edit {
   .edit-title {
     text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border-color-base;
     margin-bottom: 20px;
   }
 }
