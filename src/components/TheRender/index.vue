@@ -1,7 +1,12 @@
 <template>
-  <component class="module-field" :is="node.type" :node="node" :themeColor="themeColor">
+  <component
+    class="module-field"
+    :class="{'is-edit': isEditMode(node.type)}"
+    data-component-active="false"
+    :is="node.type"
+    :node="node"
+    :themeColor="themeColor">
     <the-render
-      class="module-field"
       v-for="child in node.children"
       :key="child.id"
       :node="child"
@@ -18,8 +23,12 @@ import EditSection from '@/components/Module/Section/EditSection'
 import ShowSection from '@/components/Module/Section/ShowSection'
 import EditParagraph from '@/components/Module/Paragraph/EditParagraph'
 import ShowParagraph from '@/components/Module/Paragraph/ShowParagraph'
-import EditCarousel from '@/components/Module/Carousel/EditCarousel'
-import ShowCarousel from '@/components/Module/Carousel/ShowCarousel'
+import EditSwipe from '@/components/Module/Swipe/EditSwipe'
+import ShowSwipe from '@/components/Module/Swipe/ShowSwipe'
+import EditImgLink from '@/components/Module/ImgLink/EditImgLink'
+import ShowImgLink from '@/components/Module/ImgLink/ShowImgLink'
+import EditTitle from '@/components/Module/Title/EditTitle'
+import ShowTitle from '@/components/Module/Title/ShowTitle'
 
 export default {
   name: 'TheRender',
@@ -31,6 +40,11 @@ export default {
       type: String
     }
   },
+  methods: {
+    isEditMode (type) {
+      return type.startsWith('Edit')
+    }
+  },
   components: {
     EditPage,
     ShowPage,
@@ -38,8 +52,20 @@ export default {
     ShowSection,
     EditParagraph,
     ShowParagraph,
-    EditCarousel,
-    ShowCarousel
+    EditSwipe,
+    ShowSwipe,
+    EditImgLink,
+    ShowImgLink,
+    EditTitle,
+    ShowTitle
   }
 }
 </script>
+
+<style lang="scss">
+.module-field {
+  .is-edit {
+    outline: 1px dashed tomato;
+  }
+}
+</style>

@@ -39,6 +39,7 @@ export default {
   &__preview,
   &__edit {
     padding: 10px;
+    overflow: auto;
   }
 
   &__module {
@@ -52,7 +53,8 @@ export default {
   }
 
   &__edit {
-    flex: 1;
+    width: 300px;
+    flex: 0 0 1;
   }
 }
 </style>

@@ -4,7 +4,7 @@ export const handleModuleClickMixin = {
   methods: {
     ...mapActions('configure', ['setEditModule']),
     getComponentNode (node) {
-      if (node && node.classList.contains('module-field')) {
+      if (node && node.getAttribute('data-component-active') !== null) {
         return node
       } else if (node.parentElement) {
         return this.getComponentNode(node.parentElement)

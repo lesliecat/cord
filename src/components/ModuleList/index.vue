@@ -1,7 +1,7 @@
 <template>
   <div class="module-list">
     <p class="module__title">布局</p>
-    <draggable :options="sectionsDragOptions">
+    <draggable class="module__field" :options="sectionsDragOptions">
       <div
         v-for="section in sectionWidgets"
         :key="section.name"
@@ -12,7 +12,7 @@
       </div>
     </draggable>
     <p class="module__title">组件</p>
-    <draggable :options="leafsDragOptions">
+    <draggable class="module__field" :options="leafsDragOptions">
       <div
         v-for="leaf in leafWidgets"
         :key="leaf.name"
@@ -68,15 +68,17 @@ export default {
     padding-bottom: 10px;
     border-bottom: 1px solid $border-color-base;
   }
-
+  .module__field {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .widget-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
+    width: 80px;
     border: 1px solid;
     border-radius: 6px;
-    padding: 5px;
     color: #fff;
     background: $color-primary;
     font-size: $font-size-base;

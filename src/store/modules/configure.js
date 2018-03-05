@@ -43,41 +43,7 @@ const configure = {
           id: createUniqueString(),
           type: 'EditPage',
           name: 'the page',
-          children: [
-            {
-              id: createUniqueString(),
-              type: 'EditSection',
-              config: {},
-              children: [
-                {
-                  id: createUniqueString(),
-                  type: 'EditParagraph',
-                  config: {
-                    title: {
-                      label: '正标题',
-                      type: 'text',
-                      value: '正标题'
-                    },
-                    subTitle: {
-                      label: '副标题',
-                      type: 'text',
-                      value: '副标题'
-                    },
-                    detail: {
-                      label: '内容',
-                      type: 'text',
-                      value: '正心诚意，格物致知'
-                    },
-                    showSubTitle: {
-                      label: '显示副标题',
-                      type: 'boolean',
-                      value: true
-                    }
-                  }
-                }
-              ]
-            }
-          ]
+          children: []
         }
       ]
     },
@@ -96,49 +62,137 @@ const configure = {
       },
       {
         type: 'section',
-        name: 'Carousel',
+        name: 'Swipe',
         icon: '',
         placeholder: {
-          type: 'EditCarousel',
+          type: 'EditSwipe',
           config: {
+            auto: {
+              label: '自动播放',
+              type: 'number',
+              min: 1000,
+              max: 4000,
+              step: 100,
+              value: 3000
+            },
+            showIndicators: {
+              label: '显示指示器',
+              type: 'boolean',
+              value: true
+            },
             height: {
               label: '高度',
               type: 'number',
-              value: 300
+              min: 200,
+              max: 300,
+              step: 20,
+              value: 200
             },
-            autoplay: {
-              label: '自动播放',
+            children: {
+              label: '子项',
+              type: 'children',
+              value: [
+                {
+                  src: {
+                    label: '图片',
+                    type: 'image',
+                    value: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520099592250&di=7eeaf9289f9806abcedab520f6e080cf&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F24%2F0c%2F59%2F240c59f8cee297c2047387e1009b4f39.jpg'
+                  },
+                  href: {
+                    label: '链接',
+                    type: 'text',
+                    value: 'https://www.baidu.com'
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        type: 'section',
+        name: 'ImgLink',
+        icon: '',
+        placeholder: {
+          type: 'EditImgLink',
+          config: {
+            showTitle: {
+              label: '显示主标题',
+              type: 'boolean',
+              value: true
+            },
+            showSubTitle: {
+              label: '显示子标题',
               type: 'boolean',
               value: false
             },
-            arrow: {
-              label: '箭头',
-              type: 'select',
-              value: 'always',
-              items: ['always', 'hover', 'never']
+            columnNum: {
+              label: '列数',
+              type: 'number',
+              min: 1,
+              max: 5,
+              value: 5
             },
-            list: {
-              label: '图片列表',
-              type: 'list',
-              placeholder: {
-                src: {
-                  label: '图片地址',
-                  type: 'image',
-                  value: 'https://www.baidu.com/img/bd_logo1.png'
-                },
-                href: {
-                  label: '图片链接',
-                  type: 'text',
-                  value: ''
+            gutter: {
+              label: '列间距',
+              type: 'number',
+              min: 0,
+              max: 10,
+              value: 5
+            },
+            picShape: {
+              label: '图片形状',
+              type: 'select',
+              value: 'rect',
+              items: ['rect', 'circle']
+            },
+            children: {
+              label: '子项',
+              type: 'children',
+              value: [
+                {
+                  src: {
+                    label: '图片',
+                    type: 'image',
+                    value: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520100023122&di=546a1bb118b59e39c0276ac028fe0cff&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01850455450dc50000019ae92d459c.jpg%40900w_1l_2o_100sh.jpg'
+                  },
+                  title: {
+                    label: '标题',
+                    type: 'text',
+                    value: '东风破'
+                  },
+                  subTitle: {
+                    label: '子标题',
+                    type: 'text',
+                    value: '菊花残'
+                  },
+                  href: {
+                    label: '链接',
+                    type: 'text',
+                    value: 'http://www.baidu.com/'
+                  }
                 }
-              },
-              itemNum: {
-                label: '子项个数',
-                type: 'number',
-                value: 3
-              },
-              children: [],
-              value: []
+              ]
+            }
+          }
+        }
+      },
+      {
+        type: 'section',
+        name: 'Title',
+        icon: '',
+        placeholder: {
+          type: 'EditTitle',
+          config: {
+            title: {
+              label: '文字',
+              type: 'text',
+              value: '标题'
+            },
+            href: {
+              label: '链接',
+              type: 'text',
+              value: ''
             }
           }
         }
