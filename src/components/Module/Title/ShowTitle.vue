@@ -1,7 +1,11 @@
 <template>
   <div class="module-title">
     <p class="title-text">{{node.config.title.value}}</p>
-    <a class="title-link" :href="node.config.href.value">更多&gt;</a>
+    <a
+      v-if="node.config.showMore.value"
+      class="title-link" :href="node.config.href.value">
+      更多
+    </a>
   </div>
 </template>
 
@@ -11,9 +15,6 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    themeColor: {
-      type: String
     }
   }
 }

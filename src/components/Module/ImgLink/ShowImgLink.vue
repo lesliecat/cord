@@ -41,9 +41,6 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    themeColor: {
-      type: String
     }
   }
 }
@@ -53,6 +50,7 @@ export default {
 @import 'src/styles/variables';
 
 .module-imglink {
+  overflow: hidden;
   .imglink-row {
     display: flex;
     flex-wrap: wrap;

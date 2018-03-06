@@ -10,9 +10,6 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    themeColor: {
-      type: String
     }
   }
 }
@@ -23,6 +20,5 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 200px;
 }
 </style>

@@ -1,3 +1,5 @@
+import createUniqueString from '@/utils/createUniqueString'
+
 export function getSite (id = 1) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -7,6 +9,7 @@ export function getSite (id = 1) {
 }
 
 const oneSite = {
+  id: createUniqueString(),
   type: 'site',
   name: 'pingan',
   config: {
@@ -17,39 +20,10 @@ const oneSite = {
   },
   children: [
     {
-      type: 'ModulePage',
+      id: createUniqueString(),
+      type: 'EditPage',
       name: 'the page',
-      children: [
-        {
-          type: 'ModuleSection',
-          config: {},
-          children: [
-            {
-              type: 'ModuleParagraph',
-              config: {
-                showSubTitle: {
-                  type: 'boolean',
-                  value: true
-                }
-              },
-              content: {
-                title: {
-                  type: 'text',
-                  value: '正标题'
-                },
-                subTitle: {
-                  type: 'text',
-                  value: '副标题'
-                },
-                detail: {
-                  type: 'text',
-                  value: '正心诚意，格物致知'
-                }
-              }
-            }
-          ]
-        }
-      ]
+      children: []
     }
   ]
 }

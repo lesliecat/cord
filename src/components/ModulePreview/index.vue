@@ -1,6 +1,6 @@
 <template>
   <div class="module-preview">
-    <the-render :node="node" :themeColor="site.config.color.value"></the-render>
+    <the-render :node="node"></the-render>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('configure', ['site', 'currentPage']),
+    ...mapState('configure', ['currentPage']),
     ...mapGetters('configure', ['previewPage']),
     node () {
       if (this.mode === 'show') {
@@ -28,10 +28,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('configure', ['getCurrentPage'])
+    ...mapActions('configure', ['getSite'])
   },
   created () {
-    this.getCurrentPage()
+    this.getSite()
   },
   components: {
     TheRender
