@@ -91,6 +91,7 @@ const configure = {
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
               value: [
                 {
                   src: {
@@ -149,6 +150,7 @@ const configure = {
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
               value: [
                 {
                   src: {
@@ -219,6 +221,7 @@ const configure = {
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
               value: [
                 {
                   src: {

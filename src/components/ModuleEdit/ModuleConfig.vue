@@ -43,24 +43,13 @@
       </template>
       <template v-if="val.type === 'children'">
         <div class="single-row">
-          <p class="item-title">{{val.label}}:共{{val.value.length}}</p>
-          <el-button-group>
-            <el-button
-              type="primary"
-              size="small"
-              icon="el-icon-minus"
-              :disabled="val.value.length === 1"
-              @click="reduceChild(val)">
-              减少
-            </el-button>
-            <el-button
-              type="primary"
-              size="small"
-              icon="el-icon-plus"
-              @click="addChild(val)">
-              增加
-            </el-button>
-          </el-button-group>
+          <p class="item-title">{{val.label}}:</p>
+          <el-input-number
+            v-model="val.length"
+            :min="1"
+            @change="changeChildrenLength(val, $event)"
+            size="small">
+          </el-input-number>
         </div>
         <div class="sub-config" v-for="(child, index) in val.value" :key="index">
           <p class="sub-title">
@@ -94,14 +83,19 @@ export default {
     isSingleRow (type) {
       return SingleRowType.includes(type)
     },
-    addChild (val) {
+    changeChildrenLength (val, num) {
       let length = val.value.length
       let last = val.value[length - 1]
-      this.$set(val.value, length, deepCopy(last))
+      if (num > length) {
+        val.value.splice(length - 1, 0, ...Array(num - length).fill(deepCopy(last)))
+      } else {
+        val.value.splice(num, length - num)
+      }
     },
     reduceChild (val, index = 0) {
       if (val.value.length > 1) {
         val.value.splice(index, 1)
+        val.length = val.value.length
       }
     },
     handleUploadSuccess (res, file) {

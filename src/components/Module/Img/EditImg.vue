@@ -38,6 +38,7 @@ export default {
   }
   .item-pic {
     border-radius: 5px;
+    max-width: 100%;
   }
 }
 </style>
