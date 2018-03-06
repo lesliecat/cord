@@ -35,8 +35,10 @@
           action="https://jsonplaceholder.typicode.com/posts/"
           :show-file-list="false"
           :on-success="handleUploadSuccess">
-          <img v-if="val.value" :src="val.value" class="upload-image">
-          <i v-else class="el-icon-plus upload-icon"></i>
+          <div v-if="val.value" class="upload-item">
+            <img :src="val.value" class="upload-pic">
+          </div>
+          <i v-else class="el-icon-plus upload-item upload-icon"></i>
         </el-upload>
       </template>
       <template v-if="val.type === 'children'">
@@ -146,31 +148,35 @@ export default {
     text-align: right;
   }
 }
-.upload-field {
-  .upload-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 120px;
-    height: 120px;
-    line-height: 120px;
-    text-align: center;
-  }
-  .upload-image {
-    width: 120px;
-    height: 120px;
-    display: block;
-  }
+.upload-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+}
+.upload-icon {
+  font-size: 28px;
+  color: #8c939d;
+}
+.upload-pic {
+  width: 100%;
 }
 </style>
 
 <style lang="scss">
 .upload-field {
   .el-upload {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
     &:hover {
       border-color: #409EFF;
     }

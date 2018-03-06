@@ -5,7 +5,6 @@
     </div>
     <div class="configure__preview">
       <module-preview></module-preview>
-      <module-preview mode="show"></module-preview>
     </div>
     <div class="configure__edit">
       <module-edit></module-edit>

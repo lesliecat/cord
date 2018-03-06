@@ -1,16 +1,14 @@
 <template>
   <component
     class="module-field"
-    :class="{'is-edit': isEditMode(node.type)}"
+    :class="{'is-edit': isEditMode}"
     data-component-active="false"
     :is="node.type"
-    :node="node"
-    :themeColor="themeColor">
+    :node="node">
     <the-render
       v-for="child in node.children"
       :key="child.id"
-      :node="child"
-      :themeColor="themeColor">
+      :node="child">
     </the-render>
   </component>
 </template>
@@ -29,6 +27,8 @@ import EditImgLink from '@/components/Module/ImgLink/EditImgLink'
 import ShowImgLink from '@/components/Module/ImgLink/ShowImgLink'
 import EditTitle from '@/components/Module/Title/EditTitle'
 import ShowTitle from '@/components/Module/Title/ShowTitle'
+import EditImg from '@/components/Module/Img/EditImg'
+import ShowImg from '@/components/Module/Img/ShowImg'
 
 export default {
   name: 'TheRender',
@@ -36,13 +36,14 @@ export default {
     node: {
       type: Object
     },
-    themeColor: {
-      type: String
+    mode: {
+      type: String,
+      default: 'edit'
     }
   },
   methods: {
-    isEditMode (type) {
-      return type.startsWith('Edit')
+    isEditMode () {
+      return this.mode === 'edit'
     }
   },
   components: {
@@ -57,7 +58,9 @@ export default {
     EditImgLink,
     ShowImgLink,
     EditTitle,
-    ShowTitle
+    ShowTitle,
+    EditImg,
+    ShowImg
   }
 }
 </script>

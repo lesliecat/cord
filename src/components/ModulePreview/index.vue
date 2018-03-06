@@ -1,6 +1,6 @@
 <template>
   <div class="module-preview">
-    <the-render :node="node" :themeColor="site.config.color.value"></the-render>
+    <the-render :node="node" :mode="mode"></the-render>
   </div>
 </template>
 

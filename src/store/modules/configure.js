@@ -83,10 +83,10 @@ const configure = {
             height: {
               label: '高度',
               type: 'number',
-              min: 200,
+              min: 100,
               max: 300,
-              step: 20,
-              value: 200
+              step: 10,
+              value: 100
             },
             children: {
               label: '子项',
@@ -96,12 +96,12 @@ const configure = {
                   src: {
                     label: '图片',
                     type: 'image',
-                    value: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520099592250&di=7eeaf9289f9806abcedab520f6e080cf&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F24%2F0c%2F59%2F240c59f8cee297c2047387e1009b4f39.jpg'
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180205150948767.png'
                   },
                   href: {
                     label: '链接',
                     type: 'text',
-                    value: 'https://www.baidu.com'
+                    value: 'https://b.pingan.com.cn/creditcard/huodong/SP201801012/index.html'
                   }
                 }
               ]
@@ -154,7 +154,7 @@ const configure = {
                   src: {
                     label: '图片',
                     type: 'image',
-                    value: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520100023122&di=546a1bb118b59e39c0276ac028fe0cff&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01850455450dc50000019ae92d459c.jpg%40900w_1l_2o_100sh.jpg'
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180207203251911.jpg'
                   },
                   title: {
                     label: '标题',
@@ -169,7 +169,7 @@ const configure = {
                   href: {
                     label: '链接',
                     type: 'text',
-                    value: 'http://www.baidu.com/'
+                    value: 'https://b.pingan.com.cn/mall/mobile/'
                   }
                 }
               ]
@@ -189,10 +189,50 @@ const configure = {
               type: 'text',
               value: '标题'
             },
+            showMore: {
+              label: '显示更多',
+              type: 'boolean',
+              value: false
+            },
             href: {
               label: '链接',
               type: 'text',
-              value: ''
+              value: 'https://b.pingan.com.cn/mall/mobile/'
+            }
+          }
+        }
+      },
+      {
+        type: 'section',
+        name: 'IMG',
+        icon: '',
+        placeholder: {
+          type: 'EditImg',
+          config: {
+            picHeight: {
+              label: '图片高',
+              type: 'number',
+              min: 20,
+              max: 100,
+              value: 60
+            },
+            children: {
+              label: '子项',
+              type: 'children',
+              value: [
+                {
+                  src: {
+                    label: '图片',
+                    type: 'image',
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png'
+                  },
+                  href: {
+                    label: '链接',
+                    type: 'text',
+                    value: 'https://b.pingan.com.cn/mall/mobile/'
+                  }
+                }
+              ]
             }
           }
         }
@@ -253,8 +293,8 @@ const configure = {
       if (widget) {
         const placeholder = deepCopy(widget.placeholder)
         section.splice(newIndex, 0, {
-          ...placeholder,
-          id: createUniqueString()
+          id: createUniqueString(),
+          ...placeholder
         })
       }
     },
@@ -279,6 +319,9 @@ const configure = {
       const site = await getSite(id)
       commit('assignState', { site })
       commit('assignState', { currentPage: site.children[0] })
+    },
+    saveSite ({ state }) {
+      localStorage.setItem('site', state.site)
     }
   }
 }

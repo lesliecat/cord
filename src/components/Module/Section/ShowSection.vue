@@ -10,9 +10,6 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    themeColor: {
-      type: String
     }
   }
 }

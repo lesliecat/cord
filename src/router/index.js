@@ -91,6 +91,12 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/preview',
+    name: 'Preivew',
+    component: () => import('@/views/preview/index')
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 

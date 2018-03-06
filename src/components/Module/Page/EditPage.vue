@@ -16,9 +16,6 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    themeColor: {
-      type: String
     }
   },
   data () {
@@ -50,7 +47,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
-  min-height: 400px;
+  overflow: auto;
   border: 2px solid $module-border-color;
   box-shadow: 0 2px 10px 5px rgba(0, 0, 0, 0.2);
   .drag-content {
