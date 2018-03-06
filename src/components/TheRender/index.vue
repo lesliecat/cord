@@ -1,7 +1,7 @@
 <template>
   <component
     class="module-field"
-    :class="{'is-edit': isEditMode}"
+    :class="{'is-edit': isEditMode(node.type)}"
     data-component-active="false"
     :is="node.type"
     :node="node">
@@ -35,15 +35,13 @@ export default {
   props: {
     node: {
       type: Object
-    },
-    mode: {
-      type: String,
-      default: 'edit'
     }
   },
   methods: {
-    isEditMode () {
-      return this.mode === 'edit'
+    isEditMode (type) {
+      if (type) {
+        return type.startsWith('Edit')
+      }
     }
   },
   components: {

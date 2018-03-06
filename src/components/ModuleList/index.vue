@@ -1,6 +1,6 @@
 <template>
   <div class="module-list">
-    <p class="module__title">布局</p>
+    <p class="module__title">组件</p>
     <draggable class="module__field" :options="sectionsDragOptions">
       <div
         v-for="section in sectionWidgets"
@@ -11,7 +11,7 @@
         <p>{{section.name}}</p>
       </div>
     </draggable>
-    <p class="module__title">组件</p>
+    <!-- <p class="module__title">组件</p>
     <draggable class="module__field" :options="leafsDragOptions">
       <div
         v-for="leaf in leafWidgets"
@@ -21,7 +21,7 @@
         <i :class="leaf.icon"></i>
         <p>{{leaf.name}}</p>
       </div>
-    </draggable>
+    </draggable> -->
   </div>
 </template>
 

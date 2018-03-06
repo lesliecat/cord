@@ -50,16 +50,16 @@ const configure = {
     currentPage: {},
     inEditModule: {},
     widgets: [
-      {
-        type: 'section',
-        name: 'Section',
-        icon: '',
-        placeholder: {
-          type: 'EditSection',
-          config: {},
-          children: []
-        }
-      },
+      // {
+      //   type: 'section',
+      //   name: 'Section',
+      //   icon: '',
+      //   placeholder: {
+      //     type: 'EditSection',
+      //     config: {},
+      //     children: []
+      //   }
+      // },
       {
         type: 'section',
         name: 'Swipe',
@@ -315,13 +315,15 @@ const configure = {
     setEditModule ({ state, commit }, module) {
       commit('assignState', { inEditModule: module })
     },
-    async getSite ({ commit }, id) {
+    async getSite ({ commit, dispatch }, id) {
       const site = await getSite(id)
       commit('assignState', { site })
       commit('assignState', { currentPage: site.children[0] })
+      dispatch('savePreviewData')
     },
-    saveSite ({ state }) {
-      localStorage.setItem('site', state.site)
+    // 存储预览需要的数据
+    savePreviewData ({ getters }) {
+      localStorage.setItem('previewData', JSON.stringify(getters.previewPage))
     }
   }
 }

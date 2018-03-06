@@ -1,21 +1,24 @@
 <template>
   <div class="preview-wrapper">
-    <module-preview mode="show"></module-preview>
+    <the-render :node="node"></the-render>
   </div>
 </template>
 
 <script>
-import ModulePreview from '@/components/ModulePreview'
+import TheRender from '@/components/TheRender'
 
 export default {
   name: 'preview',
   data () {
     return {
-
+      node: {}
     }
   },
+  created () {
+    this.node = JSON.parse(localStorage.getItem('previewData'))
+  },
   components: {
-    ModulePreview
+    TheRender
   }
 }
 </script>

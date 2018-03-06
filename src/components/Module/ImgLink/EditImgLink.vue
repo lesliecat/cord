@@ -53,6 +53,7 @@ export default {
 @import 'src/styles/variables';
 
 .module-imglink {
+  overflow: hidden;
   .imglink-row {
     display: flex;
     flex-wrap: wrap;

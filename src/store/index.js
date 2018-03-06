@@ -8,6 +8,16 @@ import getters from './getters'
 
 Vue.use(Vuex)
 
+const autoSave = (store) => {
+  store.watch(
+    state => state.configure.site,
+    (newValue, oldValue) => {
+      store.dispatch('configure/savePreviewData')
+    },
+    { deep: true }
+  )
+}
+
 const store = new Vuex.Store({
   modules: {
     app,
@@ -15,7 +25,8 @@ const store = new Vuex.Store({
     tagsView,
     configure
   },
-  getters
+  getters,
+  plugins: [autoSave]
 })
 
 export default store
