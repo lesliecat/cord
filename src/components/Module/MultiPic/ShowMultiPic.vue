@@ -1,25 +1,36 @@
 <template>
-  <div class="module-imglink" @click="handleModuleClick">
+  <div class="module-multipic">
     <div
       class="imglink-row"
       :style="{
-        'margin-left': -node.config.gutter.value + 'px',
-        'margin-right': -node.config.gutter.value + 'px'
+        'margin-left': -node.config.columnGutter.value + 'px',
+        'margin-right': -node.config.columnGutter.value + 'px',
+        'margin-top': -node.config.rowGutter.value + 'px'
       }">
       <div
         class="imglink-item"
         :style="{
           width: (100 / node.config.columnNum.value) + '%',
-          'padding-left': node.config.gutter.value + 'px',
-          'padding-right': node.config.gutter.value + 'px'
+          'padding-left': node.config.columnGutter.value + 'px',
+          'padding-right': node.config.columnGutter.value + 'px',
+          'margin-top': node.config.rowGutter.value + 'px'
         }"
         v-for="(item, index) in node.config.children.value"
         :key="index">
         <a class="item-link" :href="item.href.value" onclick="return false" target="_blank">
           <div
             class="item-picbox"
-            :class="{'circle-box': node.config.picShape.value === 'circle'}">
-            <img class="item-pic" :src="item.src.value" alt="">
+            :class="{
+              'square-box': node.config.picShape.value !== 'rectangle',
+              'circle-box': node.config.picShape.value === 'circle'
+            }">
+            <img
+              class="item-pic"
+              :src="item.src.value"
+              :style="{
+                height: node.config.picHeight.visible ? node.config.picHeight.value + 'px' : ''
+              }"
+              alt="">
           </div>
           <div
             class="item-titlebox"
@@ -36,11 +47,8 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../moduleMixin'
-
 export default {
-  name: 'EditImgLink',
-  mixins: [handleModuleClickMixin],
+  name: 'ShowMultiPic',
   props: {
     node: {
       type: Object
@@ -52,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 @import 'src/styles/variables';
 
-.module-imglink {
+.module-multipic {
   overflow: hidden;
   .imglink-row {
     display: flex;
@@ -64,19 +72,26 @@ export default {
       display: block;
     }
     .item-picbox {
-      position: relative;
-      height: 0;
-      padding-top: 100%;
-      overflow: hidden;
-      &.circle-box {
-        border-radius: 50%;
+      .item-pic {
+        max-width: 100%;
       }
-    }
-    .item-pic {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+      &.square-box {
+        position: relative;
+        height: 0;
+        padding-top: 100%;
+        overflow: hidden;
+        .item-pic {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
+      &.circle-box {
+        .item-pic {
+          border-radius: 50%;
+        }
+      }
     }
     .item-title,
     .item-sub-title {

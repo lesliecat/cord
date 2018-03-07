@@ -1,11 +1,10 @@
 <template>
-  <div class="module-img" @click="handleModuleClick">
+  <div class="module-fullpic">
     <a
       class="item-link"
       v-for="(item, index) in node.config.children.value" :key="index"
       :href="item.href.value"
-      target="_blank"
-      onclick="return false">
+      target="_blank">
       <img
         class="item-pic"
         :style="{height: node.config.picHeight.value + 'px'}"
@@ -15,10 +14,8 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../moduleMixin'
 export default {
-  name: 'EditShow',
-  mixins: [handleModuleClickMixin],
+  name: 'ShowFullImg',
   props: {
     node: {
       type: Object
@@ -28,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.module-img {
+.module-fullpic {
   .item-link {
     display: block;
     text-align: center;
