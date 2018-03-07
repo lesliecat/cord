@@ -2,7 +2,6 @@
 
 > the backstage management system for mall
 >
-> [使用文档](https://panjiachen.github.io/vue-element-admin-site/#/zh-cn/)
 
 ## Build Setup
 

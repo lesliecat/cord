@@ -35,7 +35,8 @@ const configure = {
       config: {
         color: {
           type: 'color',
-          value: 'tomato'
+          value: 'tomato',
+          visible: true
         }
       },
       children: [
@@ -73,12 +74,14 @@ const configure = {
               min: 1000,
               max: 4000,
               step: 100,
-              value: 3000
+              value: 3000,
+              visible: true
             },
             showIndicators: {
               label: '显示指示器',
               type: 'boolean',
-              value: true
+              value: true,
+              visible: true
             },
             height: {
               label: '高度',
@@ -86,22 +89,27 @@ const configure = {
               min: 100,
               max: 300,
               step: 10,
-              value: 100
+              value: 100,
+              visible: true
             },
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
+              visible: true,
               value: [
                 {
                   src: {
                     label: '图片',
                     type: 'image',
-                    value: 'https://creditcard-cdn.pingan.com/img3/20180205150948767.png'
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180205150948767.png',
+                    visible: true
                   },
                   href: {
                     label: '链接',
-                    type: 'text',
-                    value: 'https://b.pingan.com.cn/creditcard/huodong/SP201801012/index.html'
+                    type: 'href',
+                    value: 'https://b.pingan.com.cn/creditcard/huodong/SP201801012/index.html',
+                    visible: true
                   }
                 }
               ]
@@ -111,65 +119,93 @@ const configure = {
       },
       {
         type: 'section',
-        name: 'ImgLink',
+        name: 'MultiPic',
         icon: '',
         placeholder: {
-          type: 'EditImgLink',
+          type: 'EditMultiPic',
           config: {
             showTitle: {
               label: '显示主标题',
               type: 'boolean',
-              value: true
+              value: true,
+              visible: true
             },
             showSubTitle: {
               label: '显示子标题',
               type: 'boolean',
-              value: false
+              value: false,
+              visible: true
             },
             columnNum: {
               label: '列数',
               type: 'number',
               min: 1,
               max: 5,
-              value: 5
+              value: 5,
+              visible: true
             },
-            gutter: {
+            rowGutter: {
+              label: '行间距',
+              type: 'number',
+              min: 0,
+              max: 10,
+              value: 5,
+              visible: true
+            },
+            columnGutter: {
               label: '列间距',
               type: 'number',
               min: 0,
               max: 10,
-              value: 5
+              value: 5,
+              visible: true
             },
             picShape: {
               label: '图片形状',
               type: 'select',
               value: 'rect',
-              items: ['rect', 'circle']
+              items: ['rectangle', 'square', 'circle'],
+              visible: true
+            },
+            picHeight: {
+              label: '图片高度',
+              type: 'number',
+              min: 30,
+              max: 100,
+              value: 50,
+              visible: false
             },
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
+              visible: true,
               value: [
                 {
                   src: {
                     label: '图片',
                     type: 'image',
-                    value: 'https://creditcard-cdn.pingan.com/img3/20180207203251911.jpg'
+                    // value: 'https://creditcard-cdn.pingan.com/img3/20180301210221112.jpg',
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png',
+                    visible: true
                   },
                   title: {
                     label: '标题',
                     type: 'text',
-                    value: '东风破'
+                    value: '东风破',
+                    visible: true
                   },
                   subTitle: {
                     label: '子标题',
                     type: 'text',
-                    value: '菊花残'
+                    value: '菊花残',
+                    visible: false
                   },
                   href: {
                     label: '链接',
-                    type: 'text',
-                    value: 'https://b.pingan.com.cn/mall/mobile/'
+                    type: 'href',
+                    value: 'https://b.pingan.com.cn/mall/mobile/',
+                    visible: true
                   }
                 }
               ]
@@ -187,49 +223,57 @@ const configure = {
             title: {
               label: '文字',
               type: 'text',
-              value: '标题'
+              value: '标题',
+              visible: true
             },
             showMore: {
               label: '显示更多',
               type: 'boolean',
-              value: false
+              value: false,
+              visible: true
             },
             href: {
               label: '链接',
-              type: 'text',
-              value: 'https://b.pingan.com.cn/mall/mobile/'
+              type: 'href',
+              value: 'https://b.pingan.com.cn/mall/mobile/',
+              visible: true
             }
           }
         }
       },
       {
         type: 'section',
-        name: 'IMG',
+        name: 'FullPic',
         icon: '',
         placeholder: {
-          type: 'EditImg',
+          type: 'EditFullPic',
           config: {
             picHeight: {
               label: '图片高',
               type: 'number',
               min: 20,
               max: 100,
-              value: 60
+              value: 60,
+              visible: true
             },
             children: {
               label: '子项',
               type: 'children',
+              length: 1,
+              visible: true,
               value: [
                 {
                   src: {
                     label: '图片',
                     type: 'image',
-                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png'
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png',
+                    visible: true
                   },
                   href: {
                     label: '链接',
-                    type: 'text',
-                    value: 'https://b.pingan.com.cn/mall/mobile/'
+                    type: 'href',
+                    value: 'https://b.pingan.com.cn/mall/mobile/',
+                    visible: true
                   }
                 }
               ]
@@ -247,22 +291,26 @@ const configure = {
             title: {
               label: '正标题',
               type: 'text',
-              value: '正标题'
+              value: '正标题',
+              visible: true
             },
             subTitle: {
               label: '副标题',
               type: 'text',
-              value: '副标题'
+              value: '副标题',
+              visible: true
             },
             detail: {
               label: '内容',
               type: 'text',
-              value: '内容部分'
+              value: '内容部分',
+              visible: true
             },
             showSubTitle: {
               label: '显示副标题',
               type: 'boolean',
-              value: false
+              value: false,
+              visible: true
             }
           }
         }
