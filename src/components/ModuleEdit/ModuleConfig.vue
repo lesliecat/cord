@@ -2,7 +2,8 @@
   <div class="module-config">
     <div
       class="config-content"
-      v-for="(val, key) in config"
+      v-for="(val, key) in visibleConfig"
+      v-if="val.visible"
       :key="key"
       :class="{'single-row': isSingleRow(val.type)}">
       <template v-if="val.type !== 'children'">
@@ -10,6 +11,11 @@
         <el-switch v-if="val.type === 'boolean'" v-model="val.value"></el-switch>
         <el-input
           v-if="val.type === 'text'"
+          v-model="val.value"
+          clearable>
+        </el-input>
+        <el-input
+          v-if="val.type === 'href'"
           v-model="val.value"
           clearable>
         </el-input>
@@ -77,6 +83,17 @@ export default {
   props: {
     config: {
       type: Object
+    }
+  },
+  computed: {
+    visibleConfig () {
+      let ret = {}
+      for (let val in this.config) {
+        if (this.config[val].visible) {
+          ret[val] = this.config[val]
+        }
+      }
+      return ret
     }
   },
   methods: {
