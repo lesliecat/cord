@@ -4,6 +4,10 @@ const app = {
   state: {
     sidebar: {
       opened: !+Cookies.get('sidebarStatus')
+    },
+    preview: {
+      opened: false,
+      url: ''
     }
   },
   mutations: {
@@ -14,6 +18,12 @@ const app = {
         Cookies.set('sidebarStatus', 0)
       }
       state.sidebar.opened = !state.sidebar.opened
+    },
+    TOGGLE_PREVIEW: (state, opened) => {
+      state.preview.opened = opened
+    },
+    SET_PREVIEW_URL: (state, url) => {
+      state.preview.url = url
     }
   },
   actions: {
