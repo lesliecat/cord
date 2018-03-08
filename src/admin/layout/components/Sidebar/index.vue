@@ -15,8 +15,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SidebarItem from './SidebarItem'
-import ScrollBar from '../ScrollBar'
+import SidebarItem from './sidebar-item'
+import ScrollBar from '@/admin/components/scroll-bar'
 
 export default {
   components: { SidebarItem, ScrollBar },

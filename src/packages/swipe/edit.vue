@@ -5,7 +5,11 @@
       :show-indicators="node.config.showIndicators.value"
       :style="{height: node.config.height.value + 'px'}">
       <mt-swipe-item v-for="(item, index) in node.config.children.value" :key="index">
-        <a class="item-link" :href="item.href.value" onclick="return false" target="_blank">
+        <a
+          class="item-link"
+          :href="item.href.value"
+          onclick="return false"
+          target="_blank">
           <img class="item-pic" :src="item.src.value" alt="">
         </a>
       </mt-swipe-item>
@@ -14,7 +18,7 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../../mixins/module-mixin'
+import { handleModuleClickMixin } from '@/mixins/module'
 
 export default {
   name: 'EditSwipe',

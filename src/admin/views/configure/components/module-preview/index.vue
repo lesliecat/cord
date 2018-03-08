@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TheRender from '../TheRender/index'
+import TheRender from '@/packages/render'
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {

@@ -9,7 +9,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import ModuleConfig from './ModuleConfig'
+import ModuleConfig from './module-config'
 
 export default {
   name: 'ModuleEdit',

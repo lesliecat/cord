@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import ModuleList from '../../components/ModuleList'
-import ModulePreview from '../../components/ModulePreview'
-import ModuleEdit from '../../components/ModuleEdit'
+import ModuleList from './components/module-list'
+import ModulePreview from './components/module-preview'
+import ModuleEdit from './components/module-edit'
 
 export default {
   name: 'Configure',

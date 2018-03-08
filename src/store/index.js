@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
-import tagsView from './modules/tagsView'
+import tagsView from './modules/tags-view'
 import configure from './modules/configure'
 import getters from './getters'
 

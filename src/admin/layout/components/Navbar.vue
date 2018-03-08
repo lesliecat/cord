@@ -27,8 +27,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from './Breadcrumb'
-import Hamburger from './Hamburger'
+import Breadcrumb from '@/admin/components/breadcrumb'
+import Hamburger from '@/admin/components/hamburger'
 
 export default {
   components: {

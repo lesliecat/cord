@@ -1,7 +1,11 @@
 <template>
   <div class="module-page">
     <div class="page-warpper">
-      <draggable class="drag-content" :options="dragOptions" @sort="handleSort" @add="handleAdd">
+      <draggable
+        class="drag-content"
+        :options="dragOptions"
+        @sort="handleSort"
+        @add="handleAdd">
         <slot></slot>
       </draggable>
     </div>
@@ -12,7 +16,7 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { handleDragMixin } from '../../mixins/module-mixin'
+import { handleDragMixin } from '@/mixins/module'
 
 export default {
   name: 'EditPage',
@@ -66,7 +70,6 @@ export default {
     cursor: pointer;
   }
 }
-
 .page-warpper {
   position: relative;
   display: flex;

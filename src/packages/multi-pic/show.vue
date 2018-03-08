@@ -1,5 +1,5 @@
 <template>
-  <div class="module-multipic" @click="handleModuleClick">
+  <div class="module-multipic">
     <div
       class="imglink-row"
       :style="{
@@ -47,40 +47,11 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../../mixins/module-mixin'
-
 export default {
-  name: 'EditImgLink',
-  mixins: [handleModuleClickMixin],
+  name: 'ShowMultiPic',
   props: {
     node: {
       type: Object
-    }
-  },
-  computed: {
-    picShape () {
-      return this.node.config.picShape.value
-    },
-    showTitle () {
-      return this.node.config.showTitle.value
-    },
-    showSubTitle () {
-      return this.node.config.showSubTitle.value
-    }
-  },
-  watch: {
-    picShape (newVal) {
-      this.node.config.picHeight.visible = newVal === 'rectangle'
-    },
-    showTitle (newVal) {
-      this.node.config.children.value.forEach(child => {
-        child.title.visible = newVal
-      })
-    },
-    showSubTitle (newVal) {
-      this.node.config.children.value.forEach(child => {
-        child.subTitle.visible = newVal
-      })
     }
   }
 }
@@ -102,7 +73,10 @@ export default {
     }
     .item-picbox {
       .item-pic {
+        display: block;
         max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
       &.square-box {
         position: relative;

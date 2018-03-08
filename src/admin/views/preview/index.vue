@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TheRender from '../../components/TheRender'
+import TheRender from '@/packages/render'
 
 export default {
   name: 'preview',

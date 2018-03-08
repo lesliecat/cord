@@ -1,6 +1,5 @@
 import { getSite } from '@/api/configure'
-import createUniqueString from '@/utils/createUniqueString'
-import { deepCopy } from '@/utils/index'
+import { deepCopy, createUniqueString } from '@/utils'
 
 function removeOneModule (site, one) {
   if (site.children && site.children.length) {
@@ -236,7 +235,7 @@ const configure = {
               label: '链接',
               type: 'href',
               value: 'https://b.pingan.com.cn/mall/mobile/',
-              visible: true
+              visible: false
             }
           }
         }

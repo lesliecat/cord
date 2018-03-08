@@ -1,6 +1,10 @@
 <template>
   <div class="module-section" @click="handleModuleClick">
-    <draggable class="drag-content" :options="dragOptions" @sort="handleSort" @add="handleAdd">
+    <draggable
+      class="drag-content"
+      :options="dragOptions"
+      @sort="handleSort"
+      @add="handleAdd">
       <slot></slot>
     </draggable>
   </div>
@@ -8,7 +12,7 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import { handleModuleClickMixin, handleDragMixin } from '../../mixins/module-mixin'
+import { handleModuleClickMixin, handleDragMixin } from '@/mixins/module'
 
 export default {
   name: 'EditSection',
