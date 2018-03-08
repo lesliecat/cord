@@ -24,16 +24,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 第三方库
 
-"axios": "^0.17.1",
-    "better-scroll": "^1.8.3",
-    "element-ui": "^2.1.0",
-    "js-cookie": "^2.2.0",
-    "mint-ui": "^2.2.13",
-    "normalize.css": "^8.0.0",
-    "nprogress": "^0.2.0",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "vuedraggable": "^2.16.0",
-    "vuex": "^3.0.1"
-
+- axios
+- element-ui
+- js-cookie
+- mint-ui
+- normalize.css
+- nprogress
+- vue
+- vue-router
+- vuedraggable
+- vuex
 - https://github.com/marvelapp/devices.css
