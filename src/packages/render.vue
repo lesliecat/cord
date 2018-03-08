@@ -16,26 +16,26 @@
 <script>
 // 导入 JSON 树中所涉及的所有节点
 // 页面
-import EditPage from '@/woods/Page/EditPage'
-import ShowPage from '@/woods/Page/ShowPage'
+import EditPage from '@/packages/page/edit'
+import ShowPage from '@/packages/page/show'
 // 区域
-import EditSection from '@/woods/Section/EditSection'
-import ShowSection from '@/woods/Section/ShowSection'
-// 文字段落
-import EditParagraph from '@/woods/Paragraph/EditParagraph'
-import ShowParagraph from '@/woods/Paragraph/ShowParagraph'
-// 轮播
-import EditSwipe from '@/woods/Swipe/EditSwipe'
-import ShowSwipe from '@/woods/Swipe/ShowSwipe'
-// 多列图片
-import EditMultiPic from '@/woods/MultiPic/EditMultiPic'
-import ShowMultiPic from '@/woods/MultiPic/ShowMultiPic'
+import EditSection from '@/packages/section/edit'
+import ShowSection from '@/packages/section/show'
 // 标题
-import EditTitle from '@/woods/Title/EditTitle'
-import ShowTitle from '@/woods/Title/ShowTitle'
+import EditTitle from '@/packages/title/edit'
+import ShowTitle from '@/packages/title/show'
+// 文字段落
+import EditParagraph from '@/packages/paragraph/edit'
+import ShowParagraph from '@/packages/paragraph/show'
+// 轮播
+import EditSwipe from '@/packages/swipe/edit'
+import ShowSwipe from '@/packages/swipe/show'
+// 多列图片
+import EditMultiPic from '@/packages/multi-pic/edit'
+import ShowMultiPic from '@/packages/multi-pic/show'
 // 全屏图片
-import EditFullPic from '@/woods/FullPic/EditFullPic'
-import ShowFullPic from '@/woods/FullPic/ShowFullPic'
+import EditFullPic from '@/packages/full-pic/edit'
+import ShowFullPic from '@/packages/full-pic/show'
 
 export default {
   name: 'TheRender',
@@ -56,14 +56,14 @@ export default {
     ShowPage,
     EditSection,
     ShowSection,
+    EditTitle,
+    ShowTitle,
     EditParagraph,
     ShowParagraph,
     EditSwipe,
     ShowSwipe,
     EditMultiPic,
     ShowMultiPic,
-    EditTitle,
-    ShowTitle,
     EditFullPic,
     ShowFullPic
   }

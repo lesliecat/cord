@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../../mixins/module-mixin'
+import { handleModuleClickMixin } from '@/mixins/module'
+
 export default {
   name: 'EditFullPic',
   mixins: [handleModuleClickMixin],

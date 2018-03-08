@@ -1,13 +1,25 @@
 <template>
   <div class="tags-view-container">
     <scroll-pane class='tags-view-wrapper' ref='scrollPane'>
-      <router-link ref='tag' class="tags-view-item" :class="isActive(tag)?'active':''" v-for="tag in Array.from(visitedViews)"
-        :to="tag.path" :key="tag.path" @contextmenu.prevent.native="openMenu(tag,$event)">
+      <router-link
+        ref='tag'
+        class="tags-view-item"
+        :class="isActive(tag) ? 'active': ''"
+        v-for="tag in Array.from(visitedViews)"
+        :to="tag.path"
+        :key="tag.path"
+        @contextmenu.prevent.native="openMenu(tag,$event)">
         {{tag.title}}
-        <span class='el-icon-close' @click.prevent.stop='closeSelectedTag(tag)'></span>
+        <span
+          class='el-icon-close'
+          @click.prevent.stop='closeSelectedTag(tag)'>
+        </span>
       </router-link>
     </scroll-pane>
-    <ul class='contextmenu' v-show="visible" :style="{left:left+'px',top:top+'px'}">
+    <ul
+      class='contextmenu'
+      v-show="visible"
+      :style="{left: left + 'px', top: top + 'px'}">
       <li @click="closeSelectedTag(selectedTag)">Close</li>
       <li @click="closeOthersTags">Close Others</li>
       <li @click="closeAllTags">Close All</li>
@@ -16,7 +28,7 @@
 </template>
 
 <script>
-import ScrollPane from './ScrollPane'
+import ScrollPane from '@/admin/components/scroll-pane'
 
 export default {
   components: { ScrollPane },
@@ -31,6 +43,9 @@ export default {
   computed: {
     visitedViews () {
       return this.$store.state.tagsView.visitedViews
+    },
+    isSideBarOpened () {
+      return this.$store.state.app.sidebar.opened
     }
   },
   watch: {
@@ -104,7 +119,8 @@ export default {
     openMenu (tag, e) {
       this.visible = true
       this.selectedTag = tag
-      this.left = e.clientX
+      // 需要减去侧边栏的宽度
+      this.left = this.isSideBarOpened ? e.clientX - 180 : e.clientX - 64
       this.top = e.clientY
     },
     closeMenu () {

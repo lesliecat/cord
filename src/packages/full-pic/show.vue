@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'ShowFullImg',
+  name: 'ShowFullPic',
   props: {
     node: {
       type: Object

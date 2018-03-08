@@ -1,5 +1,5 @@
 <template>
-  <div class="module-multipic">
+  <div class="module-multipic" @click="handleModuleClick">
     <div
       class="imglink-row"
       :style="{
@@ -35,7 +35,8 @@
           <div
             class="item-titlebox"
             v-if="node.config.showTitle.value || node.config.showSubTitle.value">
-            <p class="item-title" v-if="node.config.showTitle.value">{{item.title.value}}</p>
+            <p class="item-title" v-if="node.config.showTitle.value">
+              {{item.title.value}}</p>
             <p class="item-sub-title" v-if="node.config.showSubTitle.value">
               {{item.subTitle.value}}
             </p>
@@ -47,11 +48,40 @@
 </template>
 
 <script>
+import { handleModuleClickMixin } from '@/mixins/module'
+
 export default {
-  name: 'ShowMultiPic',
+  name: 'EditMultiPic',
+  mixins: [handleModuleClickMixin],
   props: {
     node: {
       type: Object
+    }
+  },
+  computed: {
+    picShape () {
+      return this.node.config.picShape.value
+    },
+    showTitle () {
+      return this.node.config.showTitle.value
+    },
+    showSubTitle () {
+      return this.node.config.showSubTitle.value
+    }
+  },
+  watch: {
+    picShape (newVal) {
+      this.node.config.picHeight.visible = newVal === 'rectangle'
+    },
+    showTitle (newVal) {
+      this.node.config.children.value.forEach(child => {
+        child.title.visible = newVal
+      })
+    },
+    showSubTitle (newVal) {
+      this.node.config.children.value.forEach(child => {
+        child.subTitle.visible = newVal
+      })
     }
   }
 }
@@ -73,7 +103,10 @@ export default {
     }
     .item-picbox {
       .item-pic {
+        display: block;
         max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
       &.square-box {
         position: relative;

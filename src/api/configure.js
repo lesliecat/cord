@@ -1,4 +1,4 @@
-import createUniqueString from '@/utils/createUniqueString'
+import { createUniqueString } from '@/utils'
 
 export function getSite (id = 1) {
   return new Promise((resolve, reject) => {

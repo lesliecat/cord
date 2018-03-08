@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { handleModuleClickMixin } from '../../mixins/module-mixin'
+import { handleModuleClickMixin } from '@/mixins/module'
 
 export default {
   name: 'EditTitle',
@@ -18,6 +18,16 @@ export default {
   props: {
     node: {
       type: Object
+    }
+  },
+  computed: {
+    showMore () {
+      return this.node.config.showMore.value
+    }
+  },
+  watch: {
+    showMore (newVal) {
+      this.node.config.href.visible = newVal
     }
   }
 }
