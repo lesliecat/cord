@@ -6,15 +6,17 @@
       <tags-view></tags-view>
       <app-main></app-main>
     </div>
+    <preview></preview>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, TagsView } from '@/admin/layout/components'
+import { Navbar, Sidebar, AppMain, TagsView, Preview } from '@/admin/layout/components'
 
 export default {
   name: 'layout',
   components: {
+    Preview,
     Navbar,
     Sidebar,
     AppMain,
@@ -30,6 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 @import 'src/styles/mixin.scss';
+@import "src/styles/devices.scss";
 .app-wrapper {
   @include clearfix;
   position: relative;

@@ -9,12 +9,13 @@
         <slot></slot>
       </draggable>
     </div>
-    <button class="btn-publish">发布</button>
-    <button class="btn-preview">预览</button>
+    <button class="btn-publish" @click="submitPublish">发布</button>
+    <button class="btn-preview" @click="openPreview">预览</button>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Draggable from 'vuedraggable'
 import { handleDragMixin } from '@/mixins/module'
 
@@ -40,6 +41,25 @@ export default {
   },
   components: {
     Draggable
+  },
+  computed: {
+    ...mapGetters('configure', ['isPreview'])
+  },
+  methods: {
+    submitPublish () {},
+    openPreview () {
+      let iframeUrl = ''
+      if (this.isPreview) {
+        // https://gist.github.com/hbogs/7908703
+        if (window.location.origin) { // Some browsers (mainly IE) does not have this property, so we need to build it manually...
+          iframeUrl = window.location.origin
+        } else {
+          iframeUrl = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+        }
+        this.$store.commit('SET_PREVIEW_URL', iframeUrl + '/preview')
+        this.$store.commit('TOGGLE_PREVIEW', true)
+      }
+    }
   }
 }
 </script>

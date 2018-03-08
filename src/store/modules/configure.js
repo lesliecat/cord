@@ -327,6 +327,9 @@ const configure = {
       let ret = deepCopy(currentPage)
       changeModuleType(ret, 'Edit', 'Show')
       return ret
+    },
+    isPreview ({ currentPage }) {
+      return !!currentPage.children && currentPage.children.length
     }
   },
   mutations: {
