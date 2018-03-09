@@ -54,7 +54,7 @@ export default {
         if (window.location.origin) { // Some browsers (mainly IE) does not have this property, so we need to build it manually...
           iframeUrl = window.location.origin
         } else {
-          iframeUrl = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+          iframeUrl = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '')
         }
         this.$store.commit('SET_PREVIEW_URL', iframeUrl + '/preview')
         this.$store.commit('TOGGLE_PREVIEW', true)
