@@ -98,6 +98,18 @@ export const constantRouterMap = [
     component: () => import('@/admin/views/preview')
   },
 
+  {
+    path: '/mall/:id',
+    name: 'mall',
+    component: () => import('@/client/mall/index')
+  },
+
+  {
+    path: '/activity/:id(\\d+)',
+    name: 'activity',
+    component: () => import('@/client/activity/index')
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 

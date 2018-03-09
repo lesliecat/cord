@@ -22,7 +22,7 @@ const oneSite = {
     {
       id: createUniqueString(),
       type: 'EditPage',
-      name: 'the page',
+      name: 'Page Name',
       children: []
     }
   ]
