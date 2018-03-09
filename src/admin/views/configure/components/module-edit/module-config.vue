@@ -8,7 +8,11 @@
       :class="{'single-row': isSingleRow(val.type)}">
       <template v-if="val.type !== 'children'">
         <p class="item-title">{{val.label}}:</p>
-        <el-switch v-if="val.type === 'boolean'" v-model="val.value"></el-switch>
+        <el-switch
+          v-if="val.type === 'boolean'"
+          :disabled="val.disabled"
+          v-model="val.value">
+        </el-switch>
         <el-input
           v-if="val.type === 'text'"
           v-model="val.value"
@@ -46,11 +50,13 @@
           </div>
           <i v-else class="el-icon-plus upload-item upload-icon"></i>
         </el-upload>
+        <p class="readonly-text" v-if="val.type === 'readonly'">{{val.value}}</p>
       </template>
-      <template v-if="val.type === 'children'">
+      <template v-if="val.type === 'children' && val.value.length">
         <div class="single-row">
           <p class="item-title">{{val.label}}:</p>
           <el-input-number
+            v-if="val.showInputNumber"
             v-model="val.length"
             :min="1"
             @change="changeChildrenLength(val, $event)"
@@ -62,7 +68,7 @@
             <el-tag
               size="small"
               type="warning"
-              :closable="val.value.length > 1"
+              :closable="val.showInputNumber ? val.value.length > 1 : true"
               @close="reduceChild(val, index)">
               {{index + 1}}
             </el-tag>
@@ -76,7 +82,7 @@
 
 <script>
 import { deepCopy } from '@/utils'
-const SingleRowType = ['boolean', 'number', 'image', 'select']
+const SingleRowType = ['boolean', 'number', 'image', 'select', 'readonly']
 
 export default {
   name: 'ModuleConfig',
@@ -110,7 +116,8 @@ export default {
       }
     },
     reduceChild (val, index = 0) {
-      if (val.value.length > 1) {
+      let control = val.showInputNumber ? val.value.length > 1 : true
+      if (control) {
         val.value.splice(index, 1)
         val.length = val.value.length
       }
@@ -126,7 +133,8 @@ export default {
 @import 'src/styles/variables';
 
 .module-config {
-  .item-title {
+  .item-title,
+  .readonly-text {
     color: #666;
     font-size: $font-size-small;
   }
@@ -138,6 +146,10 @@ export default {
       width: 100px;
       flex: 0 0 100px;
       padding-right: 20px;
+    }
+    .readonly-text {
+      flex: 1;
+      word-break: break-all;
     }
   }
 }
