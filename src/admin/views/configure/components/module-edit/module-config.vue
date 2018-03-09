@@ -53,7 +53,7 @@
         <p class="readonly-text" v-if="val.type === 'readonly'">{{val.value}}</p>
       </template>
       <template v-if="val.type === 'children' && val.value.length">
-        <div class="single-row">
+        <div class="single-row sub-title">
           <p class="item-title">{{val.label}}:</p>
           <el-input-number
             v-if="val.showInputNumber"
@@ -63,18 +63,20 @@
             size="small">
           </el-input-number>
         </div>
-        <div class="sub-config" v-for="(child, index) in val.value" :key="index">
-          <p class="sub-title">
-            <el-tag
-              size="small"
-              type="warning"
-              :closable="val.showInputNumber ? val.value.length > 1 : true"
-              @close="reduceChild(val, index)">
-              {{index + 1}}
-            </el-tag>
-          </p>
-          <module-config :config="child"></module-config>
-        </div>
+        <el-collapse>
+          <el-collapse-item v-for="(child, index) in val.value" :key="index">
+            <template slot="title">
+              <el-tag
+                size="small"
+                type="warning"
+                :closable="val.showInputNumber ? val.value.length > 1 : true"
+                @close="reduceChild(val, index)">
+                {{index + 1}}
+              </el-tag>
+            </template>
+            <module-config :config="child"></module-config>
+          </el-collapse-item>
+        </el-collapse>
       </template>
     </div>
   </div>
@@ -142,6 +144,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &.sub-title {
+      margin-bottom: 10px;
+    }
     .item-title {
       width: 100px;
       flex: 0 0 100px;
@@ -157,18 +162,12 @@ export default {
   + .config-content {
     padding-top: 10px;
     border-top: 1px solid $border-color-base;
-    margin-top: 12px;
+    margin-top: 10px;
   }
   .module-config {
     padding: 10px;
     border: 1px dashed $border-color-base;
     border-radius: 6px;
-  }
-}
-.sub-config {
-  .sub-title {
-    margin-bottom: 0;
-    text-align: right;
   }
 }
 .upload-item {
