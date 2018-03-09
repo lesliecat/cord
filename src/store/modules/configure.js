@@ -80,7 +80,8 @@ const configure = {
               label: '显示指示器',
               type: 'boolean',
               value: true,
-              visible: true
+              visible: true,
+              disabled: false
             },
             height: {
               label: '高度',
@@ -96,6 +97,7 @@ const configure = {
               type: 'children',
               length: 1,
               visible: true,
+              showInputNumber: true,
               value: [
                 {
                   src: {
@@ -127,7 +129,8 @@ const configure = {
               label: '显示主标题',
               type: 'boolean',
               value: true,
-              visible: true
+              visible: true,
+              disabled: false
             },
             showSubTitle: {
               label: '显示子标题',
@@ -179,6 +182,7 @@ const configure = {
               type: 'children',
               length: 1,
               visible: true,
+              showInputNumber: true,
               value: [
                 {
                   src: {
@@ -242,6 +246,105 @@ const configure = {
       },
       {
         type: 'section',
+        name: 'Goods',
+        icon: '',
+        placeholder: {
+          type: 'EditGoods',
+          config: {
+            showAdd: {
+              label: '显示添加',
+              type: 'boolean',
+              value: true,
+              visible: true,
+              disabled: true
+            },
+            columnNum: {
+              label: '列数',
+              type: 'number',
+              min: 1,
+              max: 5,
+              value: 3,
+              visible: true
+            },
+            rowGutter: {
+              label: '行间距',
+              type: 'number',
+              min: 0,
+              max: 10,
+              value: 0,
+              visible: true
+            },
+            columnGutter: {
+              label: '列间距',
+              type: 'number',
+              min: 0,
+              max: 10,
+              value: 0,
+              visible: true
+            },
+            children: {
+              label: '子项',
+              type: 'children',
+              visible: true,
+              showInputNumber: false,
+              placeholder: {
+                productId: {
+                  label: '商品id',
+                  type: 'readonly',
+                  value: '000',
+                  visible: true
+                },
+                src: {
+                  label: '图片',
+                  type: 'image',
+                  value: 'https://cdn4.iconfinder.com/data/icons/ios7-essence/22/add_plus-512.png',
+                  visible: true
+                },
+                productName: {
+                  label: '名称',
+                  type: 'readonly',
+                  value: '点击添加商品',
+                  visible: true
+                },
+                href: {
+                  label: '链接',
+                  type: 'readonly',
+                  value: 'https://www.baidu.com/',
+                  visible: true
+                },
+                salePrice: {
+                  label: '商品价格',
+                  type: 'readonly',
+                  value: 200.20,
+                  visible: true
+                },
+                perStepPayInteger: {
+                  label: '分期整数',
+                  type: 'readonly',
+                  value: 100,
+                  visible: true
+                },
+                perStepPayFraction: {
+                  label: '分期小数',
+                  type: 'readonly',
+                  value: 10,
+                  visible: true
+                },
+                stageNum: {
+                  label: '分期数量',
+                  type: 'readonly',
+                  value: 2,
+                  visible: true
+                }
+              },
+              value: [],
+              length: 0
+            }
+          }
+        }
+      },
+      {
+        type: 'section',
         name: 'FullPic',
         icon: '',
         placeholder: {
@@ -260,6 +363,7 @@ const configure = {
               type: 'children',
               length: 1,
               visible: true,
+              showInputNumber: true,
               value: [
                 {
                   src: {
@@ -309,7 +413,8 @@ const configure = {
               label: '显示副标题',
               type: 'boolean',
               value: false,
-              visible: true
+              visible: true,
+              disabled: false
             }
           }
         }
@@ -352,14 +457,14 @@ const configure = {
     }
   },
   actions: {
-    removeModule ({ state, commit, dispatch }) {
+    removeModule ({ state, dispatch }) {
       removeOneModule(state.site, state.inEditModule)
       dispatch('setEditModule', {})
     },
     getCurrentPage ({ state, commit }) {
       commit('assignState', { currentPage: state.site.children[0] })
     },
-    setEditModule ({ state, commit }, module) {
+    setEditModule ({ commit }, module) {
       commit('assignState', { inEditModule: module })
     },
     async getSite ({ commit, dispatch }, id) {

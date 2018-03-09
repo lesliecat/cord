@@ -36,6 +36,9 @@ import ShowMultiPic from '@/packages/multi-pic/show'
 // 全屏图片
 import EditFullPic from '@/packages/full-pic/edit'
 import ShowFullPic from '@/packages/full-pic/show'
+// 商品
+import EditGoods from '@/packages/goods/edit'
+import ShowGoods from '@/packages/goods/show'
 
 export default {
   name: 'TheRender',
@@ -65,7 +68,9 @@ export default {
     EditMultiPic,
     ShowMultiPic,
     EditFullPic,
-    ShowFullPic
+    ShowFullPic,
+    EditGoods,
+    ShowGoods
   }
 }
 </script>
