@@ -166,8 +166,21 @@ const configure = {
             picShape: {
               label: '图片形状',
               type: 'select',
-              value: 'rect',
-              items: ['rectangle', 'square', 'circle'],
+              value: 'square',
+              items: [
+                {
+                  label: '矩形',
+                  value: 'rectangle'
+                },
+                {
+                  label: '方形',
+                  value: 'square'
+                },
+                {
+                  label: '圆形',
+                  value: 'circle'
+                }
+              ],
               visible: true
             },
             picHeight: {
