@@ -1,11 +1,13 @@
 <template>
-  <draggable
-    class="drag-content"
-    :options="dragOptions"
-    @sort="handleSort"
-    @add="handleAdd">
-    <slot></slot>
-  </draggable>
+  <div class="module-page">
+    <draggable
+      class="drag-content"
+      :options="dragOptions"
+      @sort="handleSort"
+      @add="handleAdd">
+      <slot></slot>
+    </draggable>
+  </div>
 </template>
 
 <script>
@@ -39,7 +41,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.module-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   .drag-content {
     flex: 1;
   }
+}
 </style>
