@@ -1,49 +1,28 @@
 <template>
   <div class="module-list">
-    <p class="module__title">组件</p>
-    <draggable class="module__field" :options="sectionsDragOptions">
+    <draggable class="module__field" :options="dragOptions">
       <div
-        v-for="section in sectionWidgets"
-        :key="section.name"
+        v-for="widget in widgets"
+        :key="widget.name"
         class="widget-card"
-        :type="section.placeholder.type">
-        <i :class="section.icon"></i>
-        <p>{{section.name}}</p>
+        :type="widget.placeholder.type">
+        <p>{{widget.name}}</p>
       </div>
     </draggable>
-    <!-- <p class="module__title">组件</p>
-    <draggable class="module__field" :options="leafsDragOptions">
-      <div
-        v-for="leaf in leafWidgets"
-        :key="leaf.name"
-        class="widget-card"
-        :type="leaf.placeholder.type">
-        <i :class="leaf.icon"></i>
-        <p>{{leaf.name}}</p>
-      </div>
-    </draggable> -->
   </div>
 </template>
 
 <script>
 import Draggable from 'vuedraggable'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'ModuleList',
   data () {
     return {
-      sectionsDragOptions: {
+      dragOptions: {
         group: {
           name: 'sections',
-          pull: 'clone',
-          put: false
-        },
-        sort: false
-      },
-      leafsDragOptions: {
-        group: {
-          name: 'leafs',
           pull: 'clone',
           put: false
         },
@@ -52,7 +31,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('configure', ['sectionWidgets', 'leafWidgets'])
+    ...mapState('configure', ['widgets'])
   },
   components: {
     Draggable

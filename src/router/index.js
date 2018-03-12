@@ -28,7 +28,11 @@ export const constantRouterMap = [
     hidden: true
   },
 
-  { path: '/404', component: () => import('@/admin/views/404'), hidden: true },
+  {
+    path: '/404',
+    component: () => import('@/admin/views/404'),
+    hidden: true
+  },
 
   {
     path: '/',
@@ -40,41 +44,6 @@ export const constantRouterMap = [
       {
         path: 'dashboard',
         component: () => import('@/admin/views/dashboard')
-      }
-    ]
-  },
-
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/admin/views/table'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/admin/views/tree'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/admin/views/form'),
-        meta: { title: 'Form', icon: 'form' }
       }
     ]
   },

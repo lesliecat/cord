@@ -18,15 +18,9 @@
 // 页面
 import EditPage from '@/packages/page/edit'
 import ShowPage from '@/packages/page/show'
-// 区域
-import EditSection from '@/packages/section/edit'
-import ShowSection from '@/packages/section/show'
 // 标题
 import EditTitle from '@/packages/title/edit'
 import ShowTitle from '@/packages/title/show'
-// 文字段落
-import EditParagraph from '@/packages/paragraph/edit'
-import ShowParagraph from '@/packages/paragraph/show'
 // 轮播
 import EditSwipe from '@/packages/swipe/edit'
 import ShowSwipe from '@/packages/swipe/show'
@@ -57,12 +51,8 @@ export default {
   components: {
     EditPage,
     ShowPage,
-    EditSection,
-    ShowSection,
     EditTitle,
     ShowTitle,
-    EditParagraph,
-    ShowParagraph,
     EditSwipe,
     ShowSwipe,
     EditMultiPic,
@@ -77,7 +67,6 @@ export default {
 
 <style lang="scss">
 .module-field {
-  margin-bottom: 5px;
   .is-edit {
     outline: 1px dashed tomato;
   }
