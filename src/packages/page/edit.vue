@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import Draggable from 'vuedraggable'
 import { handleDragMixin } from '@/mixins/module'
 
@@ -95,6 +95,7 @@ export default {
   },
   methods: {
     ...mapMutations('configure', ['assignState']),
+    ...mapActions('configure', ['savePreviewData']),
     chooseBiz (value) {
       // 生成页面地址
       this.form.pageUrl = getOriginUrl() + '/' + value + '/' + this.currentPage.id
@@ -114,6 +115,7 @@ export default {
             pageUrl: this.form.pageUrl
           }
         })
+        this.savePreviewData()
       }).catch((err) => {
         console.log(err)
       })
