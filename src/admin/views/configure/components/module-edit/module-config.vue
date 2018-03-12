@@ -34,9 +34,9 @@
         <el-select v-if="val.type === 'select'" v-model="val.value">
           <el-option
             v-for="item in val.items"
-            :key="item"
-            :label="item"
-            :value="item">
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
           </el-option>
         </el-select>
         <el-upload
