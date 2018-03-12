@@ -17,14 +17,18 @@ export default {
   data () {
     return {
       node: null,
-      msg: '页面不存在'
+      msg: ''
     }
   },
   created () {
     let previewDate = JSON.parse(localStorage.getItem('previewData'))
     console.log(previewDate)
-    if (previewDate.isPublish) {
-      this.node = JSON.parse(localStorage.getItem('previewData'))
+    if (window.location.href !== previewDate.pageUrl) {
+      this.msg = '页面不存在'
+    } else if (!previewDate.isPublish) {
+      this.msg = '页面还未发布'
+    } else {
+      this.node = previewDate
     }
   },
   components: {
