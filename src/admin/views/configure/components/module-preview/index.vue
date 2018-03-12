@@ -1,20 +1,20 @@
 <template>
   <div class="module-preview">
-
-    <div class="module__page">
-      <div class="module__warpper">
-        <the-render :node="node"></the-render>
+    <div class="preview__wrapper">
+      <div class="preview__content">
+        <the-render :node="currentPage"></the-render>
       </div>
-      <button class="btn btn__preview" @click="openPublish">发布</button>
-      <button class="btn btn__publish" @click="openPreview">预览</button>
+      <div class="preview__aside">
+        <el-button plain @click="openPublish" :disabled="!isReady">发布</el-button>
+        <el-button plain @click="openPreview" :disabled="!isReady">预览</el-button>
+      </div>
     </div>
 
     <el-dialog
       title="提示"
-      width="30%"
+      width="40%"
       :visible.sync="dialogVisible"
-      :before-close="handleClose"
-    >
+      :before-close="handleClose">
       <el-form ref="form" :model="form" label-width="120px">
         <el-form-item label="页面名称">
           <el-input v-model="form.pageName"></el-input>
@@ -23,7 +23,10 @@
           <el-input v-model="form.pageId" disabled></el-input>
         </el-form-item>
         <el-form-item label="业务模块">
-          <el-select v-model="form.biz" @change="chooseBiz" placeholder="请选择业务模块">
+          <el-select
+            v-model="form.biz"
+            @change="chooseBiz"
+            placeholder="请选择业务模块">
             <el-option label="口袋商城" value="mall"></el-option>
             <el-option label="活动页面" value="activity"></el-option>
           </el-select>
@@ -42,11 +45,12 @@
 
 <script>
 import TheRender from '@/packages/render'
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 const getOriginUrl = () => {
   let url = ''
-  if (window.location.origin) { // Some browsers (mainly IE) does not have this property, so we need to build it manually...
+  // Some browsers (mainly IE) does not have this property, so we need to build it manually...
+  if (window.location.origin) {
     url = window.location.origin
   } else {
     url = window.location.protocol + '//' + window.location.hostname +
@@ -57,29 +61,6 @@ const getOriginUrl = () => {
 
 export default {
   name: 'ModulePreview',
-  props: {
-    mode: {
-      type: String,
-      default: 'edit'
-    }
-  },
-  computed: {
-    ...mapState('configure', ['currentPage']),
-    ...mapGetters('configure', ['isPreview', 'previewPage']),
-    node () {
-      if (this.mode === 'show') {
-        return this.previewPage
-      } else {
-        return this.currentPage
-      }
-    }
-  },
-  created () {
-    this.getSite()
-  },
-  components: {
-    TheRender
-  },
   data () {
     return {
       dialogVisible: false,
@@ -91,10 +72,15 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState('configure', ['currentPage']),
+    isReady () {
+      return !!(this.currentPage.children && this.currentPage.children.length)
+    }
+  },
   methods: {
-    ...mapActions('configure', ['getSite']),
     ...mapMutations('configure', ['assignState']),
-    ...mapActions('configure', ['savePreviewData']),
+    ...mapActions('configure', ['getSite', 'savePreviewData']),
     chooseBiz (value) {
       // 生成页面地址
       this.form.pageUrl = getOriginUrl() + '/' + value + '/' + this.currentPage.id
@@ -125,57 +111,52 @@ export default {
       this.dialogVisible = true
     },
     openPreview () {
-      let iframeUrl = ''
-      if (this.isPreview) {
-        iframeUrl = getOriginUrl()
+      if (this.isReady) {
+        const iframeUrl = getOriginUrl()
         this.$store.commit('SET_PREVIEW_URL', iframeUrl + '/preview')
         this.$store.commit('TOGGLE_PREVIEW', true)
       }
     }
+  },
+  components: {
+    TheRender
+  },
+  created () {
+    this.getSite()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import 'src/styles/variables';
+@import 'src/styles/variables';
 
-  .module {
-    &__page {
-      position: relative;
-      width: 320px;
-      height: 568px;
-      margin-left: auto;
-      margin-right: auto;
+.module-preview {
+  height: 100%;
+  .preview {
+    &__wrapper {
+      display: flex;
+      justify-content: center;
+      height: 572px;
     }
-
-    &__warpper {
-      position: relative;
+    &__content {
+      flex: 0 0 324px;
+      width: 324px;
+      border: 2px solid $module-border-color;
+      box-shadow: 0 2px 10px 2px rgba($module-border-color, 0.2);
+    }
+    &__aside {
       display: flex;
       flex-direction: column;
-      width: 320px;
-      height: 568px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 10px;
-      overflow: auto;
-      border: 2px solid $module-border-color;
-      box-shadow: 0 2px 10px 5px rgba(0, 0, 0, 0.2);
+      justify-content: flex-end;
+      width: 80px;
+      padding-left: 5px;
+      .el-button {
+        + .el-button {
+          margin-top: 10px;
+          margin-left: 0;
+        }
+      }
     }
   }
-
-  .btn {
-    position: absolute;
-    cursor: pointer;
-    padding: 4px;
-    border: 1px solid #333;
-    right: -41px;
-
-    &__publish {
-      bottom: 45px;
-    }
-
-    &__preview {
-      bottom: 10px;
-    }
-  }
+}
 </style>

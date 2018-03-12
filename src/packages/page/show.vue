@@ -15,15 +15,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import 'src/styles/variables';
-
-.module-page {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: auto;
-}
-</style>
