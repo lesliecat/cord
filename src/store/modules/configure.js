@@ -31,6 +31,7 @@ const configure = {
       id: createUniqueString(),
       type: 'site',
       name: 'pingan',
+      isPublish: false,
       config: {
         color: {
           type: 'color',
@@ -42,7 +43,7 @@ const configure = {
         {
           id: createUniqueString(),
           type: 'EditPage',
-          name: 'the page',
+          name: 'Page Name',
           children: []
         }
       ]
@@ -453,10 +454,10 @@ const configure = {
         })
       }
     },
-    sortModule (state, { array, oldIndex, newIndex }) {
-      let target = array[oldIndex]
-      array.splice(oldIndex, 1)
-      array.splice(newIndex, 0, target)
+    sortModule (state, { section, oldIndex, newIndex }) {
+      let target = section[oldIndex]
+      section.splice(oldIndex, 1)
+      section.splice(newIndex, 0, target)
     }
   },
   actions: {
