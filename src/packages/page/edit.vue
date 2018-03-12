@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 import Draggable from 'vuedraggable'
 import { handleDragMixin } from '@/mixins/module'
 
@@ -94,6 +94,7 @@ export default {
     ...mapState('configure', ['currentPage'])
   },
   methods: {
+    ...mapMutations('configure', ['assignState']),
     chooseBiz (value) {
       // 生成页面地址
       this.form.pageUrl = getOriginUrl() + '/' + value + '/' + this.currentPage.id
@@ -106,14 +107,13 @@ export default {
     confirmPublish () {
       this.$confirm('确认发布？').then(() => {
         this.dialogVisible = false
-        // this.currentPage.isPublish = true
-        // this.currentPage.pageUrl = this.form.pageUrl
-        this.$store.commit('configure/setPublish', {
-          isPublish: true,
-          pageUrl: this.form.pageUrl
+        this.assignState({
+          currentPage: {
+            ...this.currentPage,
+            isPublish: true,
+            pageUrl: this.form.pageUrl
+          }
         })
-        this.$store.dispatch('configure/savePreviewData')
-        console.log(this.currentPage)
       }).catch((err) => {
         console.log(err)
       })

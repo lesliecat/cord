@@ -439,9 +439,6 @@ const configure = {
     }
   },
   mutations: {
-    setPublish (state, opts) {
-      Object.assign(state.currentPage, opts)
-    },
     assignState (state, obj) {
       Object.assign(state, obj)
     },
@@ -457,10 +454,10 @@ const configure = {
         })
       }
     },
-    sortModule (state, { array, oldIndex, newIndex }) {
-      let target = array[oldIndex]
-      array.splice(oldIndex, 1)
-      array.splice(newIndex, 0, target)
+    sortModule (state, { section, oldIndex, newIndex }) {
+      let target = section[oldIndex]
+      section.splice(oldIndex, 1)
+      section.splice(newIndex, 0, target)
     }
   },
   actions: {

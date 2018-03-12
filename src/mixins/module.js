@@ -32,7 +32,7 @@ export const handleDragMixin = {
     handleSort (e) {
       let { oldIndex, newIndex, from, to } = e
       if (from === to) {
-        this.sortModule({ array: this.node.children, oldIndex, newIndex })
+        this.sortModule({ section: this.node.children, oldIndex, newIndex })
       }
     },
     handleAdd (e) {
