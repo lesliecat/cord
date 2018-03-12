@@ -342,6 +342,29 @@ const configure = {
             }
           }
         }
+      },
+      {
+        name: 'Gutter',
+        icon: '',
+        placeholder: {
+          type: 'EditGutter',
+          config: {
+            height: {
+              label: '高度',
+              type: 'number',
+              value: 10,
+              min: 5,
+              max: 20,
+              visible: true
+            },
+            backgroundColor: {
+              label: '背景色',
+              type: 'color',
+              value: '#f8f8f8',
+              visible: true
+            }
+          }
+        }
       }
     ]
   },

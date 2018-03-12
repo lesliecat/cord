@@ -30,6 +30,9 @@ import ShowMultiPic from '@/packages/multi-pic/show'
 // 商品
 import EditGoods from '@/packages/goods/edit'
 import ShowGoods from '@/packages/goods/show'
+// 间隔
+import EditGutter from '@/packages/gutter/edit'
+import ShowGutter from '@/packages/gutter/show'
 
 export default {
   name: 'TheRender',
@@ -55,7 +58,9 @@ export default {
     EditMultiPic,
     ShowMultiPic,
     EditGoods,
-    ShowGoods
+    ShowGoods,
+    EditGutter,
+    ShowGutter
   }
 }
 </script>

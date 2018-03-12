@@ -3,7 +3,6 @@
     <div
       class="config-content"
       v-for="(val, key) in visibleConfig"
-      v-if="val.visible"
       :key="key"
       :class="{'single-row': isSingleRow(val.type)}">
       <template v-if="val.type !== 'children'">
@@ -50,6 +49,10 @@
           </div>
           <i v-else class="el-icon-plus upload-item upload-icon"></i>
         </el-upload>
+        <el-color-picker
+          v-if="val.type === 'color'"
+          v-model="val.value">
+        </el-color-picker>
         <p class="readonly-text" v-if="val.type === 'readonly'">{{val.value}}</p>
       </template>
       <template v-if="val.type === 'children' && val.value.length">
@@ -84,7 +87,7 @@
 
 <script>
 import { deepCopy } from '@/utils'
-const SingleRowType = ['boolean', 'number', 'image', 'select', 'readonly']
+const SingleRowType = ['boolean', 'number', 'image', 'select', 'readonly', 'color']
 
 export default {
   name: 'ModuleConfig',
