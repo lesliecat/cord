@@ -51,18 +51,7 @@ const configure = {
     currentPage: {},
     inEditModule: {},
     widgets: [
-      // {
-      //   type: 'section',
-      //   name: 'Section',
-      //   icon: '',
-      //   placeholder: {
-      //     type: 'EditSection',
-      //     config: {},
-      //     children: []
-      //   }
-      // },
       {
-        type: 'section',
         name: 'Swipe',
         icon: '',
         placeholder: {
@@ -120,7 +109,6 @@ const configure = {
         }
       },
       {
-        type: 'section',
         name: 'MultiPic',
         icon: '',
         placeholder: {
@@ -202,8 +190,8 @@ const configure = {
                   src: {
                     label: '图片',
                     type: 'image',
-                    // value: 'https://creditcard-cdn.pingan.com/img3/20180301210221112.jpg',
-                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png',
+                    value: 'https://creditcard-cdn.pingan.com/img3/20180301210221112.jpg',
+                    // value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png',
                     visible: true
                   },
                   title: {
@@ -231,7 +219,6 @@ const configure = {
         }
       },
       {
-        type: 'section',
         name: 'Title',
         icon: '',
         placeholder: {
@@ -259,7 +246,6 @@ const configure = {
         }
       },
       {
-        type: 'section',
         name: 'Goods',
         icon: '',
         placeholder: {
@@ -356,92 +342,10 @@ const configure = {
             }
           }
         }
-      },
-      {
-        type: 'section',
-        name: 'FullPic',
-        icon: '',
-        placeholder: {
-          type: 'EditFullPic',
-          config: {
-            picHeight: {
-              label: '图片高',
-              type: 'number',
-              min: 20,
-              max: 100,
-              value: 60,
-              visible: true
-            },
-            children: {
-              label: '子项',
-              type: 'children',
-              length: 1,
-              visible: true,
-              showInputNumber: true,
-              value: [
-                {
-                  src: {
-                    label: '图片',
-                    type: 'image',
-                    value: 'https://creditcard-cdn.pingan.com/img3/20180205153504236.png',
-                    visible: true
-                  },
-                  href: {
-                    label: '链接',
-                    type: 'href',
-                    value: 'https://b.pingan.com.cn/mall/mobile/',
-                    visible: true
-                  }
-                }
-              ]
-            }
-          }
-        }
-      },
-      {
-        type: 'leaf',
-        name: 'Paragraph',
-        icon: '',
-        placeholder: {
-          type: 'EditParagraph',
-          config: {
-            title: {
-              label: '正标题',
-              type: 'text',
-              value: '正标题',
-              visible: true
-            },
-            subTitle: {
-              label: '副标题',
-              type: 'text',
-              value: '副标题',
-              visible: true
-            },
-            detail: {
-              label: '内容',
-              type: 'text',
-              value: '内容部分',
-              visible: true
-            },
-            showSubTitle: {
-              label: '显示副标题',
-              type: 'boolean',
-              value: false,
-              visible: true,
-              disabled: false
-            }
-          }
-        }
       }
     ]
   },
   getters: {
-    sectionWidgets ({ widgets }) {
-      return widgets.filter(widget => widget.type === 'section')
-    },
-    leafWidgets ({ widgets }) {
-      return widgets.filter(widget => widget.type === 'leaf')
-    },
     previewPage ({ currentPage }) {
       let ret = deepCopy(currentPage)
       changeModuleType(ret, 'Edit', 'Show')
