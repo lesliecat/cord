@@ -36,4 +36,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 - vuex
 - https://github.com/marvelapp/devices.css
 
-## test123
+## test
