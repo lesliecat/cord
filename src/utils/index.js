@@ -1,7 +1,3 @@
-/**
- * Created by jiachenpan on 16/11/18.
- */
-
 export function parseTime (time, cFormat) {
   if (arguments.length === 0) {
     return null
@@ -66,4 +62,29 @@ export function formatTime (time, option) {
       '分'
     )
   }
+}
+
+export function param2Obj (url) {
+  const search = url.split('?')[1]
+  if (!search) {
+    return {}
+  }
+  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+}
+
+export function deepCopy (obj) {
+  if (typeof obj !== 'object') return
+  var newObj = obj instanceof Array ? [] : {}
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key]
+    }
+  }
+  return newObj
+}
+
+export function createUniqueString () {
+  const timestamp = +new Date() + ''
+  const randomNum = parseInt((1 + Math.random()) * 65536) + ''
+  return (+(randomNum + timestamp)).toString(32)
 }

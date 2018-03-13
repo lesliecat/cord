@@ -3,17 +3,24 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
+@import './module.scss';
 
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-    Microsoft YaHei, Arial, sans-serif;
+  Microsoft YaHei, Arial, sans-serif;
 }
 
 html {
   box-sizing: border-box;
+  user-select: none;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 *,
@@ -50,9 +57,12 @@ a:hover {
   }
 }
 
-//main-container全局样式
-.app-main {
-  min-height: 100%;
+button:focus {
+  outline: 0 !important;
+}
+
+#app {
+  height: 100%;
 }
 
 .app-container {
