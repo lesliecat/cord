@@ -26,7 +26,7 @@ import EditSwipe from '@/packages/swipe/edit'
 import ShowSwipe from '@/packages/swipe/show'
 // 多列图片
 import EditMultiPic from '@/packages/multi-pic/edit'
-import ShowMultiPic from '@/packages/multi-pic/show'
+// import ShowMultiPic from '@/packages/multi-pic/show'
 // 商品
 import EditGoods from '@/packages/goods/edit'
 import ShowGoods from '@/packages/goods/show'
@@ -56,7 +56,7 @@ export default {
     EditSwipe,
     ShowSwipe,
     EditMultiPic,
-    ShowMultiPic,
+    // ShowMultiPic,
     EditGoods,
     ShowGoods,
     EditGutter,
